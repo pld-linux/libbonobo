@@ -13,7 +13,7 @@ URL:		http://www.gnome.org/
 BuildRequires:	ORBit2-devel >= 2.4.0
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	bonobo-activation-devel >= 2.1.0
+BuildRequires:	bonobo-activation-devel >= 1.0.0
 BuildRequires:	glib2-devel >= 2.0.3
 BuildRequires:	libtool
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
