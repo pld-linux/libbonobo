@@ -1,0 +1,12 @@
+diff -urN libbonobo-2.3.3.orig/bonobo/bonobo-main.h libbonobo-2.3.3/bonobo/bonobo-main.h
+--- libbonobo-2.3.3.orig/bonobo/bonobo-main.h	Mon Jun 23 08:21:15 2003
++++ libbonobo-2.3.3/bonobo/bonobo-main.h	Mon Jun 23 08:21:34 2003
+@@ -40,7 +40,7 @@
+ 							  ...);
+ PortableServer_POA          bonobo_poa_get_threadedv     (ORBitThreadHint         hint,
+ 							  va_list                 args);
+-PortableServer_POA          bonobo_poa_new_from          (PortableServer_POA      template,
++PortableServer_POA          bonobo_poa_new_from          (PortableServer_POA      tmpl,
+ 							  const char             *name,
+ 							  const CORBA_PolicyList *opt_policies,
+ 							  CORBA_Environment      *opt_ev);
