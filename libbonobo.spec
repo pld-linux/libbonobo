@@ -107,6 +107,7 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_libdir}/bonobo/monikers
 %attr(755,root,root) %{_libdir}/bonobo-*
 %attr(755,root,root) %{_libdir}/bonobo/monikers/lib*.??
+%attr(755,root,root) %{_libdir}/orbit-2.0/*.??
 %{_datadir}/idl/bonobo-*
 
 %files devel
@@ -116,7 +117,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_pkgconfigdir}/*.pc
 %{_includedir}/libbonobo-*
 %{_gtkdocdir}/%{name}
-%{_libdir}/orbit-2.0/*.??
+
 
 %files static
 %defattr(644,root,root,755)
