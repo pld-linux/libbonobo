@@ -104,14 +104,17 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/bonobo/servers
 %dir %{_libdir}/bonobo/monikers
 %attr(755,root,root) %{_libdir}/bonobo-*
-%attr(755,root,root) %{_libdir}/bonobo/monikers/lib*.??
-%attr(755,root,root) %{_libdir}/orbit-2.0/*.??
+%{_libdir}/bonobo/monikers/lib*.la
+%attr(755,root,root) %{_libdir}/bonobo/monikers/lib*.so
+%{_libdir}/orbit-2.0/*.la
+%attr(755,root,root) %{_libdir}/orbit-2.0/*.so
 %{_datadir}/idl/bonobo-*
 
 %files devel
 %defattr(644,root,root,755)
 %doc ChangeLog TODO 
-%attr(755,root,root) %{_libdir}/lib*.??
+%{_libdir}/lib*.la
+%attr(755,root,root) %{_libdir}/lib*.so
 %{_pkgconfigdir}/*.pc
 %{_includedir}/libbonobo-*
 %{_gtkdocdir}/%{name}
