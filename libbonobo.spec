@@ -20,7 +20,6 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Obsoletes:	libbonobo0
 
 %define		_sysconfdir	/etc/X11/GNOME2
-%define		_prefix		/usr/X11R6
 %define		_gtkdocdir	%{_defaultdocdir}/gtk-doc/html
 
 %description
@@ -61,6 +60,7 @@ Summary:	Static libbonobo libraries
 Summary(pl):	Biblioteki statyczne libbonobo
 Group:		X11/Development/Libraries
 Requires:	%{name}-devel = %{version}
+Requires:	bonobo-activation-static
 
 %description static
 Static libbonobo libraries.
@@ -108,15 +108,18 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/bonobo/servers
 %dir %{_libdir}/bonobo/monikers
 %attr(755,root,root) %{_libdir}/bonobo-*
-%attr(755,root,root) %{_libdir}/bonobo/monikers/lib*.??
+%{_libdir}/bonobo/monikers/lib*.la
+%attr(755,root,root) %{_libdir}/bonobo/monikers/lib*.so
 %dir %{_libdir}/orbit-2.0
-%attr(755,root,root) %{_libdir}/orbit-2.0/*.??
+%{_libdir}/orbit-2.0/*.la
+%attr(755,root,root) %{_libdir}/orbit-2.0/*.so
 %{_datadir}/idl/bonobo-*
 
 %files devel
 %defattr(644,root,root,755)
 %doc ChangeLog TODO 
-%attr(755,root,root) %{_libdir}/lib*.??
+%{_libdir}/lib*.la
+%attr(755,root,root) %{_libdir}/lib*.so
 %{_pkgconfigdir}/*.pc
 %{_includedir}/libbonobo-*
 %{_gtkdocdir}/%{name}
