@@ -3,12 +3,13 @@ Summary(pl):	Biblioteka do ³±czenia dokumentów w GNOME
 Summary(pt_BR):	Biblioteca para documentos compostos no GNOME
 Name:		libbonobo
 Version:	2.3.3
-Release:	1
+Release:	2
 License:	GPL
 Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/gnome/sources/%{name}/2.3/%{name}-%{version}.tar.bz2
 # Source0-md5:	1513b7989a2786ec7b1063417595db80
 Patch0:		%{name}-GNOME_COMPILE_WARNINGS.patch
+Patch1:		%{name}-header.patch
 URL:		http://www.gnome.org/
 BuildRequires:	ORBit2-devel >= 2.7.2
 BuildRequires:	autoconf
@@ -74,6 +75,7 @@ Biblioteki statyczne libbonobo.
 %prep
 %setup -q
 %patch0 -p1
+%patch1 -p1
 
 %build
 rm -f missing
