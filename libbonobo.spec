@@ -2,23 +2,24 @@ Summary:	Library for compound documents in GNOME
 Summary(pl):	Biblioteka do ³±czenia dokumentów w GNOME
 Summary(pt_BR):	Biblioteca para documentos compostos no GNOME
 Name:		libbonobo
-Version:	1.117.1
+Version:	2.0.0
 Release:	1
 License:	GPL
 Group:		X11/Libraries
 Source0:	ftp://ftp.gnome.org/pub/gnome/pre-gnome2/sources/%{name}/%{name}-%{version}.tar.bz2
 Patch0:		%{name}-GNOME_COMPILE_WARNINGS.patch
 URL:		http://www.gnome.org/
-BuildRequires:	ORBit2-devel >= 2.3.110
+BuildRequires:	ORBit2-devel >= 2.4.0
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	bonobo-activation-devel >= 0.9.9
-BuildRequires:	glib2-devel >= 2.0.1
+BuildRequires:	bonobo-activation-devel >= 1.0.0
+BuildRequires:	glib2-devel >= 2.0.3
 BuildRequires:	libtool
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_sysconfdir	/etc/X11/GNOME2
 %define		_prefix		/usr/X11R6
+%define		_gtkdocdir	/usr/share/doc/gtk-doc/html
 
 %description
 libbonobo is a library that provides the necessary framework for
@@ -73,7 +74,8 @@ rm -f missing
 %{__autoconf}
 %{__automake}
 %configure \
-	--enable-gtk-doc=no
+	--enable-gtk-doc \
+	--with-html-dir=%{_gtkdocdir}
 
 %{__make}
 
@@ -82,7 +84,8 @@ rm -rf $RPM_BUILD_ROOT
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
-	pkgconfigdir=%{_pkgconfigdir}
+	pkgconfigdir=%{_pkgconfigdir} \
+	HTML_DIR=%{_gtkdocdir}
 
 %find_lang %{name} --with-gnome --all-name
 
@@ -106,11 +109,11 @@ rm -rf $RPM_BUILD_ROOT
 
 %files devel
 %defattr(644,root,root,755)
-%doc AUTHORS ChangeLog NEWS README
+%doc AUTHORS ChangeLog NEWS README changes.txt TODO 
 %attr(755,root,root) %{_libdir}/lib*.??
 %{_pkgconfigdir}/*.pc
 %{_includedir}/libbonobo-*
-%{_datadir}/gtk-doc/html/%{name}
+%{_gtkdocdir}/%{name}
 
 %files static
 %defattr(644,root,root,755)
