@@ -10,7 +10,7 @@ Source0:	http://ftp.gnome.org/pub/gnome/sources/%{name}/2.4/%{name}-%{version}.t
 # Source0-md5:	243a4914ae90d08da7cd34ae41e9cac6
 Patch0:		%{name}-GNOME_COMPILE_WARNINGS.patch
 URL:		http://www.gnome.org/
-BuildRequires:	ORBit2-devel >= 2.7.5
+BuildRequires:	ORBit2-devel >= 1:2.7.5
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	gettext-devel
@@ -20,7 +20,7 @@ BuildRequires:	intltool
 BuildRequires:	libtool
 BuildRequires:	rpm-build >= 4.1-10
 Requires(post):	/sbin/ldconfig
-Requires:	ORBit2 >= 2.7.5
+Requires:	ORBit2 >= 1:2.7.5
 Provides:	bonobo-activation = %{version}
 Obsoletes:	bonobo-activation
 Obsoletes:	libbonobo0
@@ -46,6 +46,7 @@ Summary:	Include files for the libbonobo document model
 Summary(pl):	Pliki nag³ówkowe biblioteki libbonobo
 Group:		Development/Libraries
 Requires:	%{name} = %{version}
+Requires:	ORBit2-devel >= 1:2.7.5
 Requires:	gtk-doc-common
 Provides:	bonobo-activation-devel = %{version}
 Obsoletes:	bonobo-activation-devel
