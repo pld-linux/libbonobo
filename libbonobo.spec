@@ -67,7 +67,7 @@ Biblioteki statyczne libbonobo.
 %build
 rm -f missing
 libtoolize --copy --force
-aclocal
+aclocal -I %{_aclocaldir}/gnome
 autoconf
 automake -a -c -f
 %configure \
