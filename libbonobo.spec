@@ -9,12 +9,14 @@ Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/gnome/sources/%{name}/2.3/%{name}-%{version}.tar.bz2
 Patch0:		%{name}-GNOME_COMPILE_WARNINGS.patch
 Patch1:		%{name}-destdir.patch
+Patch2:		%{name}-locale-sr.patch
 URL:		http://www.gnome.org/
 BuildRequires:	ORBit2-devel >= 2.7.1
 BuildRequires:	autoconf
 BuildRequires:	automake
+BuildRequires:	gettext-devel
 BuildRequires:	glib2-devel >= 2.2.1
-BuildRequires:	gtk-doc
+BuildRequires:	gtk-doc >= 1.1
 BuildRequires:	libtool
 BuildRequires:	rpm-build >= 4.1-10
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -73,6 +75,11 @@ Biblioteki statyczne libbonobo.
 %setup -q
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
+
+# sr_YU is latin2, sr_YU@cyrillic is cyrillic in glibc
+mv -f po/{sr.po,sr@cyrillic.po}
+mv -f po/{sr@Latn.po,sr.po}
 
 %build
 rm -f missing
@@ -91,6 +98,9 @@ rm -rf $RPM_BUILD_ROOT
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT 
+
+# no static modules
+rm -f $RPM_BUILD_ROOT%{_libdir}/{bonobo/monikers,orbit-2.0}/*.a
 
 %find_lang %{name} --with-gnome --all-name
 
@@ -140,5 +150,3 @@ done
 %files static
 %defattr(644,root,root,755)
 %{_libdir}/lib*.a
-%{_libdir}/bonobo/monikers/lib*.a
-%{_libdir}/orbit-2.0/*.a
