@@ -114,7 +114,9 @@ done
 %attr(755,root,root) %{_libdir}/bonobo-*
 %attr(755,root,root) %{_libdir}/bonobo/monikers/lib*.so
 %attr(755,root,root) %{_libdir}/orbit-2.0/*.so
+%dir %{_libdir}/bonobo
 %dir %{_libdir}/bonobo/monikers
+%dir %{_libdir}/bonobo/servers
 %{_libdir}/bonobo/monikers/lib*.la
 %{_libdir}/bonobo/servers/*
 %{_libdir}/orbit-2.0/*.la
