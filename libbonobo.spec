@@ -7,6 +7,7 @@ Release:	4
 License:	GPL
 Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/gnome/sources/%{name}/2.3/%{name}-%{version}.tar.bz2
+# Source0-md5: ad452a56b6d348446843d2ceb85ca9ba
 Patch0:		%{name}-GNOME_COMPILE_WARNINGS.patch
 Patch1:		%{name}-destdir.patch
 Patch2:		%{name}-locale-sr.patch
