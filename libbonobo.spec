@@ -15,7 +15,7 @@ BuildRequires:	automake
 BuildRequires:	bonobo-activation-devel >= 2.1.0-3
 BuildRequires:	glib2-devel >= 2.0.3
 BuildRequires:	libtool
-Requires:	bonobo-activation >= 2.1.0
+Requires:	bonobo-activation >= 2.1.0-3
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Obsoletes:	libbonobo0
 
