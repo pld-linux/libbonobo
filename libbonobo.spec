@@ -6,9 +6,8 @@ Version:	2.0.1
 Release:	2
 License:	GPL
 Group:		X11/Libraries
-Source0:	ftp://ftp.gnome.org/pub/gnome/sources/%{name}/2.0/%{name}-%{version}.tar.bz2
+Source0:	http://ftp.gnome.org/pub/gnome/sources/%{name}/2.0/%{name}-%{version}.tar.bz2
 Patch0:		%{name}-GNOME_COMPILE_WARNINGS.patch
-#Patch1:		%{name}-pthread.patch
 URL:		http://www.gnome.org/
 BuildRequires:	ORBit2-devel >= 2.4.0
 BuildRequires:	autoconf
@@ -70,7 +69,6 @@ Biblioteki statyczne libbonobo.
 %prep
 %setup -q
 %patch0 -p1
-#%patch1 -p1
 
 %build
 rm -f missing
