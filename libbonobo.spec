@@ -3,10 +3,11 @@ Summary(pl):	Biblioteka do ³±czenia dokumentów w GNOME
 Summary(pt_BR):	Biblioteca para documentos compostos no GNOME
 Name:		libbonobo
 Version:	1.116.0
-Release:	1
+Release:	2
 License:	GPL
 Group:		X11/Libraries
 Source0:	ftp://ftp.gnome.org/pub/gnome/pre-gnome2/sources/%{name}/%{name}-%{version}.tar.bz2
+Patch0:		%{name}-GNOME_COMPILE_WARNINGS.patch
 URL:		http://www.gnome.org/
 BuildRequires:	ORBit2-devel
 BuildRequires:	autoconf
@@ -63,11 +64,12 @@ Biblioteki statyczne libbonobo.
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
 rm -f missing
 libtoolize --copy --force
-aclocal -I %{_aclocaldir}/gnome
+aclocal
 autoconf
 automake -a -c -f
 %configure \
