@@ -5,7 +5,7 @@ Name:		libbonobo
 Version:	2.1.0
 Release:	4
 License:	GPL
-Group:		X11/Libraries
+Group:		Libraries
 Source0:	ftp://ftp.gnome.org/pub/gnome/sources/%{name}/2.1/%{name}-%{version}.tar.bz2
 Patch0:		%{name}-GNOME_COMPILE_WARNINGS.patch
 URL:		http://www.gnome.org/
@@ -40,7 +40,7 @@ exemplo planilhas de cálculo e gráficos juntos num documento texto.
 %package devel
 Summary:	Include files for the libbonobo document model
 Summary(pl):	Pliki nag³ówkowe biblioteki libbonobo
-Group:		X11/Development/Libraries
+Group:		Development/Libraries
 Requires:	%{name} = %{version}
 Requires:	bonobo-activation-devel
 Requires:	gtk-doc-common
@@ -57,7 +57,7 @@ korzystaj±cych z modelu dokumentów libbonobo.
 %package static
 Summary:	Static libbonobo libraries
 Summary(pl):	Biblioteki statyczne libbonobo
-Group:		X11/Development/Libraries
+Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}
 
 %description static
