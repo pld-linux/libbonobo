@@ -22,7 +22,6 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Provides:	bonobo-activation = %{version}
 Obsoletes:	libbonobo0
 Obsoletes:	bonobo-activation
-Obsoletes:	bonobo
 
 %description
 libbonobo is a library that provides the necessary framework for
