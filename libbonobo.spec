@@ -3,11 +3,12 @@ Summary(pl):	Biblioteka do ³±czenia dokumentów w GNOME
 Summary(pt_BR):	Biblioteca para documentos compostos no GNOME
 Name:		libbonobo
 Version:	2.3.1
-Release:	1
+Release:	2
 License:	GPL
 Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/gnome/sources/%{name}/2.3/%{name}-%{version}.tar.bz2
 Patch0:		%{name}-GNOME_COMPILE_WARNINGS.patch
+Patch1:		%{name}-destdir.patch
 URL:		http://www.gnome.org/
 BuildRequires:	ORBit2-devel >= 2.7.1
 BuildRequires:	autoconf
@@ -71,6 +72,7 @@ Biblioteki statyczne libbonobo.
 %prep
 %setup -q
 %patch0 -p1
+%patch1 -p1
 
 %build
 rm -f missing
@@ -105,6 +107,7 @@ done
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
+%config(noreplace) %{_sysconfdir}/bonobo-activation/bonobo-activation-config.xml
 %doc AUTHORS NEWS README changes.txt
 %attr(755,root,root) %{_bindir}/activation-client
 %attr(755,root,root) %{_bindir}/bonobo-slay
@@ -114,6 +117,7 @@ done
 %attr(755,root,root) %{_libdir}/bonobo-*
 %attr(755,root,root) %{_libdir}/bonobo/monikers/lib*.so
 %attr(755,root,root) %{_libdir}/orbit-2.0/*.so
+%dir %{_sysconfdir}/bonobo-activation
 %dir %{_libdir}/bonobo
 %dir %{_libdir}/bonobo/monikers
 %dir %{_libdir}/bonobo/servers
