@@ -16,14 +16,15 @@ BuildRequires:	automake
 BuildRequires:	gettext-devel
 BuildRequires:	glib2-devel >= 2.2.2
 BuildRequires:	gtk-doc >= 1.1
-BuildRequires:	libtool
 BuildRequires:	intltool
+BuildRequires:	libtool
 BuildRequires:	rpm-build >= 4.1-10
+Requires(post):	/sbin/ldconfig
 Requires:	ORBit2 >= 2.7.5
-BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Provides:	bonobo-activation = %{version}
-Obsoletes:	libbonobo0
 Obsoletes:	bonobo-activation
+Obsoletes:	libbonobo0
+BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 libbonobo is a library that provides the necessary framework for
@@ -47,8 +48,8 @@ Group:		Development/Libraries
 Requires:	%{name} = %{version}
 Requires:	gtk-doc-common
 Provides:	bonobo-activation-devel = %{version}
-Obsoletes:	libbonobo0-devel
 Obsoletes:	bonobo-activation-devel
+Obsoletes:	libbonobo0-devel
 
 %description devel
 This package provides the necessary include files to allow you to
