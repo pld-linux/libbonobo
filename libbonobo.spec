@@ -3,7 +3,7 @@ Summary(pl):	Biblioteka do ³±czenia dokumentów w GNOME
 Summary(pt_BR):	Biblioteca para documentos compostos no GNOME
 Name:		libbonobo
 Version:	2.4.2
-Release:	1
+Release:	2
 License:	GPL
 Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/gnome/sources/%{name}/2.4/%{name}-%{version}.tar.bz2
@@ -95,10 +95,8 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-# no static modules
-# no *.la for orbit modules (are *.la for monikers necessary???)
-rm -f $RPM_BUILD_ROOT%{_libdir}/{bonobo/monikers,orbit-2.0}/*.a
-rm -f $RPM_BUILD_ROOT%{_libdir}/orbit-2.0/*.la
+# no static orbit or bonobo modules and *.la for them
+rm -f $RPM_BUILD_ROOT%{_libdir}/{bonobo/monikers,orbit-2.0}/*.{la,a}
 #Seems to be only test tool during build
 rm -f $RPM_BUILD_ROOT%{_bindir}/bonobo-activation-run-query
 
@@ -131,7 +129,6 @@ done
 %dir %{_libdir}/bonobo
 %dir %{_libdir}/bonobo/monikers
 %dir %{_libdir}/bonobo/servers
-%{_libdir}/bonobo/monikers/lib*.la
 %{_libdir}/bonobo/servers/*
 %{_datadir}/idl/bonobo-*
 %{_mandir}/man1/*
