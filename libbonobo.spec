@@ -19,7 +19,7 @@ BuildRequires:	gtk-doc >= 1.1
 BuildRequires:	intltool
 BuildRequires:	libtool
 BuildRequires:	rpm-build >= 4.1-10
-BuildRequires:  libxml2-devel
+BuildRequires:	libxml2-devel
 Requires(post):	/sbin/ldconfig
 Requires:	ORBit2 >= 1:2.7.5
 Provides:	bonobo-activation = %{version}
@@ -112,7 +112,7 @@ rm -rf $RPM_BUILD_ROOT
 %post
 /sbin/ldconfig
 for item in /usr/lib/bonobo/servers /usr/X11R6/lib/bonobo/servers; do
-    /usr/sbin/bonobo-activation-sysconf --add-directory=$item
+	/usr/sbin/bonobo-activation-sysconf --add-directory=$item
 done
 
 %postun -p /sbin/ldconfig
