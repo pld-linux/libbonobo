@@ -1,17 +1,18 @@
 Summary:	Library for compound documents in GNOME
+Summary(pl):	Biblioteka do ³±czenia dokumentów w GNOME
 Summary(pt_BR):	Biblioteca para documentos compostos no GNOME
 Name:		libbonobo
 Version:	1.109.0
 Release:	1
 License:	GPL
-Group:		Development/Libraries
-Group(de):	Entwicklung/Libraries
-Group(es):	Desarrollo/Bibliotecas
-Group(fr):	Development/Librairies
-Group(pl):	Programowanie/Biblioteki
-Group(pt_BR):	Desenvolvimento/Bibliotecas
-Group(ru):	òÁÚÒÁÂÏÔËÁ/âÉÂÌÉÏÔÅËÉ
-Group(uk):	òÏÚÒÏÂËÁ/â¦ÂÌ¦ÏÔÅËÉ
+Group:		X11/Libraries
+Group(de):	X11/Libraries
+Group(es):	X11/Bibliotecas
+Group(fr):	X11/Librairies
+Group(pl):	X11/Biblioteki
+Group(pt_BR):	X11/Bibliotecas
+Group(ru):	X11/âÉÂÌÉÏÔÅËÉ
+Group(uk):	X11/â¦ÂÌ¦ÏÔÅËÉ
 Source0:	ftp://ftp.gnome.org/pub/GNOME/pre-gnome2/sources/%{name}/%{name}-%{version}.tar.bz2
 URL:		http://www.gnome.org/
 BuildRequires:	bonobo-activation-devel
@@ -23,64 +24,63 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %define		_prefix		/usr/X11R6
 
 %description
-libbonobo is a library that provides the necessary framework for GNOME2
-applications to deal with compound documents, i.e. those with a
-spreadsheet and graphic embedded in a word-processing document.
-
-%description -l es
-libbonobo is a library that provides the necessary framework for GNOME2
-applications to deal with compound documents, i.e. those with a
+libbonobo is a library that provides the necessary framework for
+GNOME2 applications to deal with compound documents, i.e. those with a
 spreadsheet and graphic embedded in a word-processing document.
 
 %description -l pl
-libbonobo jest bibliotek± daj±c± aplikacjom GNOME2 szkielet pozwalaj±cy im
-pracowaæ ze z³o¿onymi dokumentami. Dziêki niemu mo¿na np. osadziæ
-arkusz kalkulacyjny i grafikê w dokumencie edytora tekstu.
+libbonobo jest bibliotek± daj±c± aplikacjom GNOME2 szkielet
+pozwalaj±cy im pracowaæ ze z³o¿onymi dokumentami. Dziêki niemu mo¿na
+np. osadziæ arkusz kalkulacyjny i grafikê w dokumencie edytora tekstu.
 
 %description -l pt_BR
 libbonobo é uma biblioteca que fornece uma camada necessária para os
-aplicativos do GNOME2 funcionarem com documentos compostos, por exemplo
-planilhas de cálculo e gráficos juntos num documento texto.
+aplicativos do GNOME2 funcionarem com documentos compostos, por
+exemplo planilhas de cálculo e gráficos juntos num documento texto.
 
 %package devel
-Summary:	Libraries and include files for the libbonobo document model
-Group:		Development/Libraries
-Group(de):	Entwicklung/Libraries
-Group(es):	Desarrollo/Bibliotecas
-Group(fr):	Development/Librairies
-Group(pl):	Programowanie/Biblioteki
-Group(pt_BR):	Desenvolvimento/Bibliotecas
-Group(ru):	òÁÚÒÁÂÏÔËÁ/âÉÂÌÉÏÔÅËÉ
-Group(uk):	òÏÚÒÏÂËÁ/â¦ÂÌ¦ÏÔÅËÉ
+Summary:	Include files for the libbonobo document model
+Summary(pl):	Pliki nag³ówkowe biblioteki libbonobo
+Group:		X11/Development/Libraries
+Group(de):	X11/Entwicklung/Libraries
+Group(es):	X11/Desarrollo/Bibliotecas
+Group(fr):	X11/Development/Librairies
+Group(pl):	X11/Programowanie/Biblioteki
+Group(pt_BR):	X11/Desenvolvimento/Bibliotecas
+Group(ru):	X11/òÁÚÒÁÂÏÔËÁ/âÉÂÌÉÏÔÅËÉ
+Group(uk):	X11/òÏÚÒÏÂËÁ/â¦ÂÌ¦ÏÔÅËÉ
 Requires:	%{name} = %{version}
 Requires:	bonobo-activation-devel
 
 %description devel
-This package provides the necessary development libraries and include
-files to allow you to develop programs using the libbonobo document
-model.
+This package provides the necessary include files to allow you to
+develop programs using the libbonobo document model.
+
+%description devel -l pl
+Ten pakiet zawiera pliki nag³ówkowe potrzebne do tworzenia programów
+korzystaj±cych z modelu dokumentów libbonobo.
 
 %package static
 Summary:	Static libbonobo libraries
 Summary(pl):	Biblioteki statyczne libbonobo
-Group:		Development/Libraries
-Group(de):	Entwicklung/Libraries
-Group(es):	Desarrollo/Bibliotecas
-Group(fr):	Development/Librairies
-Group(pl):	Programowanie/Biblioteki
-Group(pt_BR):	Desenvolvimento/Bibliotecas
-Group(ru):	òÁÚÒÁÂÏÔËÁ/âÉÂÌÉÏÔÅËÉ
-Group(uk):	òÏÚÒÏÂËÁ/â¦ÂÌ¦ÏÔÅËÉ
+Group:		X11/Development/Libraries
+Group(de):	X11/Entwicklung/Libraries
+Group(es):	X11/Desarrollo/Bibliotecas
+Group(fr):	X11/Development/Librairies
+Group(pl):	X11/Programowanie/Biblioteki
+Group(pt_BR):	X11/Desenvolvimento/Bibliotecas
+Group(ru):	X11/òÁÚÒÁÂÏÔËÁ/âÉÂÌÉÏÔÅËÉ
+Group(uk):	X11/òÏÚÒÏÂËÁ/â¦ÂÌ¦ÏÔÅËÉ
 Requires:	%{name}-devel = %{version}
 
 %description static
 Static libbonobo libraries.
 
-%description -l pl static
+%description static -l pl
 Biblioteki statyczne libbonobo.
 
 %prep
-%setup  -q
+%setup -q
 
 %build
 %configure \
