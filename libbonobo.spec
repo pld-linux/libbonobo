@@ -20,9 +20,7 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Obsoletes:	libbonobo0
 
 %define		_sysconfdir	/etc/X11/GNOME2
-%define		_prefix		/usr/X11R6
 %define		_gtkdocdir	%{_defaultdocdir}/gtk-doc/html
-%define		orbit_libdir	/usr/lib/orbit-2.0
 
 %description
 libbonobo is a library that provides the necessary framework for
@@ -90,8 +88,7 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
 	pkgconfigdir=%{_pkgconfigdir} \
-	HTML_DIR=%{_gtkdocdir} \
-	orbittypelibdir=%{orbit_libdir}
+	HTML_DIR=%{_gtkdocdir}
 
 %find_lang %{name} --with-gnome --all-name
 
@@ -110,7 +107,6 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_libdir}/bonobo/monikers
 %attr(755,root,root) %{_libdir}/bonobo-*
 %attr(755,root,root) %{_libdir}/bonobo/monikers/lib*.??
-%dir %{orbit_libdir}
 %attr(755,root,root) %{orbit_libdir}/*.??
 %{_datadir}/idl/bonobo-*
 
