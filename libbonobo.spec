@@ -2,21 +2,21 @@ Summary:	Library for compound documents in GNOME
 Summary(pl):	Biblioteka do ³±czenia dokumentów w GNOME
 Summary(pt_BR):	Biblioteca para documentos compostos no GNOME
 Name:		libbonobo
-Version:	2.4.2
+Version:	2.5.1
 Release:	1
 License:	GPL
 Group:		Libraries
-Source0:	http://ftp.gnome.org/pub/gnome/sources/%{name}/2.4/%{name}-%{version}.tar.bz2
-# Source0-md5:	78200cc6ed588c93f0d29177a5f3e003
+Source0:	http://ftp.gnome.org/pub/gnome/sources/%{name}/2.5/%{name}-%{version}.tar.bz2
+# Source0-md5:	b77592d587e7d5ab9c177f15712e44f3
 URL:		http://www.gnome.org/
-BuildRequires:	ORBit2-devel >= 1:2.7.5
+BuildRequires:	ORBit2-devel >= 1:2.9.2
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	gettext-devel
 BuildRequires:	glib2-devel >= 2.2.2
 BuildRequires:	gnome-common
 BuildRequires:	gtk-doc >= 1.1
-BuildRequires:	intltool
+BuildRequires:	intltool >= 0.28
 BuildRequires:	libtool
 BuildRequires:	rpm-build >= 4.1-10
 BuildRequires:	libxml2-devel
@@ -47,7 +47,7 @@ Summary:	Include files for the libbonobo document model
 Summary(pl):	Pliki nag³ówkowe biblioteki libbonobo
 Group:		Development/Libraries
 Requires:	%{name} = %{version}
-Requires:	ORBit2-devel >= 1:2.7.5
+Requires:	ORBit2-devel >= 1:2.9.2
 Requires:	gtk-doc-common
 Provides:	bonobo-activation-devel = %{version}
 Obsoletes:	bonobo-activation-devel
