@@ -3,7 +3,7 @@ Summary(pl):	Biblioteka do ³±czenia dokumentów w GNOME
 Summary(pt_BR):	Biblioteca para documentos compostos no GNOME
 Name:		libbonobo
 Version:	2.1.0
-Release:	2
+Release:	3
 License:	GPL
 Group:		X11/Libraries
 Source0:	ftp://ftp.gnome.org/pub/gnome/sources/%{name}/2.1/%{name}-%{version}.tar.bz2
@@ -107,7 +107,6 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_libdir}/bonobo/monikers
 %attr(755,root,root) %{_libdir}/bonobo-*
 %attr(755,root,root) %{_libdir}/bonobo/monikers/lib*.??
-%attr(755,root,root) %{orbit_libdir}/*.??
 %{_datadir}/idl/bonobo-*
 
 %files devel
@@ -117,9 +116,10 @@ rm -rf $RPM_BUILD_ROOT
 %{_pkgconfigdir}/*.pc
 %{_includedir}/libbonobo-*
 %{_gtkdocdir}/%{name}
+%{_libdir}/orbit-2.0/*.??
 
 %files static
 %defattr(644,root,root,755)
 %{_libdir}/lib*.a
 %{_libdir}/bonobo/monikers/lib*.a
-%{orbit_libdir}/*.a
+%{_libdir}/orbit-2.0/*.a
