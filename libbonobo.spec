@@ -3,7 +3,7 @@ Summary(pl):	Biblioteka do ³±czenia dokumentów w GNOME
 Summary(pt_BR):	Biblioteca para documentos compostos no GNOME
 Name:		libbonobo
 Version:	2.0.0
-Release:	2
+Release:	5
 License:	GPL
 Group:		X11/Libraries
 Source0:	ftp://ftp.gnome.org/pub/gnome/pre-gnome2/sources/%{name}/%{name}-%{version}.tar.bz2
@@ -16,6 +16,7 @@ BuildRequires:	bonobo-activation-devel >= 1.0.0
 BuildRequires:	glib2-devel >= 2.0.3
 BuildRequires:	libtool
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+Obsoletes:	libbonobo0
 
 %define		_sysconfdir	/etc/X11/GNOME2
 %define		_prefix		/usr/X11R6
@@ -43,6 +44,7 @@ Group:		X11/Development/Libraries
 Requires:	%{name} = %{version}
 Requires:	bonobo-activation-devel
 Requires:	gtk-doc-common
+Obsoletes:	libbonobo0-devel
 
 %description devel
 This package provides the necessary include files to allow you to
