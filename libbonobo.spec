@@ -8,9 +8,12 @@ License:	GPL
 Group:		X11/Libraries
 Source0:	ftp://ftp.gnome.org/pub/gnome/pre-gnome2/sources/%{name}/%{name}-%{version}.tar.bz2
 URL:		http://www.gnome.org/
-BuildRequires:	bonobo-activation-devel >= 0.9.8
 BuildRequires:	ORBit2-devel
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	bonobo-activation-devel >= 0.9.8
 BuildRequires:	glib2-devel >= 2.0.0
+BuildRequires:	libtool
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_sysconfdir	/etc/X11/GNOME2
@@ -62,6 +65,11 @@ Biblioteki statyczne libbonobo.
 %setup -q
 
 %build
+rm -f missing
+libtoolize --copy --force
+aclocal
+autoconf
+automake -a -c -f
 %configure \
 	--enable-gtk-doc=no
 
