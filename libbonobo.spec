@@ -14,6 +14,7 @@ BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	bonobo-activation-devel >= 2.2.0
 BuildRequires:	glib2-devel >= 2.0.3
+BuildRequires:	gtk-doc
 BuildRequires:	libtool
 BuildRequires:	rpm-build >= 4.1-8.2
 Requires:	bonobo-activation >= 2.2.0
