@@ -14,6 +14,7 @@ BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	gettext-devel
 BuildRequires:	glib2-devel >= 2.2.2
+BuildRequires:	gnome-common
 BuildRequires:	gtk-doc >= 1.1
 BuildRequires:	intltool
 BuildRequires:	libtool
@@ -78,9 +79,8 @@ Biblioteki statyczne libbonobo.
 %setup -q
 
 %build
-rm -f missing
 %{__libtoolize}
-%{__aclocal}
+%{__aclocal} -I %{_aclocaldir}/gnome2-macros
 %{__autoconf}
 %{__automake}
 %configure \
