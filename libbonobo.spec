@@ -19,6 +19,7 @@ BuildRequires:	gtk-doc >= 1.1
 BuildRequires:	intltool
 BuildRequires:	libtool
 BuildRequires:	rpm-build >= 4.1-10
+BuildRequires:  libxml2-devel
 Requires(post):	/sbin/ldconfig
 Requires:	ORBit2 >= 1:2.7.5
 Provides:	bonobo-activation = %{version}
