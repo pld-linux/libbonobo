@@ -2,21 +2,19 @@ Summary:	Library for compound documents in GNOME
 Summary(pl):	Biblioteka do ³±czenia dokumentów w GNOME
 Summary(pt_BR):	Biblioteca para documentos compostos no GNOME
 Name:		libbonobo
-Version:	2.3.1
-Release:	4
+Version:	2.3.2
+Release:	1
 License:	GPL
 Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/gnome/sources/%{name}/2.3/%{name}-%{version}.tar.bz2
-# Source0-md5: ad452a56b6d348446843d2ceb85ca9ba
+# Source0-md5:	ead61ec5eea9fd6f013a04e50c4e9196
 Patch0:		%{name}-GNOME_COMPILE_WARNINGS.patch
-Patch1:		%{name}-destdir.patch
-Patch2:		%{name}-locale-sr.patch
 URL:		http://www.gnome.org/
-BuildRequires:	ORBit2-devel >= 2.7.1
+BuildRequires:	ORBit2-devel >= 2.7.2
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	gettext-devel
-BuildRequires:	glib2-devel >= 2.2.1
+BuildRequires:	glib2-devel >= 2.2.2
 BuildRequires:	gtk-doc >= 1.1
 BuildRequires:	libtool
 BuildRequires:	rpm-build >= 4.1-10
@@ -75,12 +73,6 @@ Biblioteki statyczne libbonobo.
 %prep
 %setup -q
 %patch0 -p1
-%patch1 -p1
-%patch2 -p1
-
-# sr_YU is latin2, sr_YU@cyrillic is cyrillic in glibc
-mv -f po/{sr.po,sr@cyrillic.po}
-mv -f po/{sr@Latn.po,sr.po}
 
 %build
 rm -f missing
@@ -104,6 +96,8 @@ rm -rf $RPM_BUILD_ROOT
 # no *.la for orbit modules (are *.la for monikers necessary???)
 rm -f $RPM_BUILD_ROOT%{_libdir}/{bonobo/monikers,orbit-2.0}/*.a
 rm -f $RPM_BUILD_ROOT%{_libdir}/orbit-2.0/*.la
+#Seems to be only test tool during build
+rm -f $RPM_BUILD_ROOT%{_bindir}/bonobo-activation-run-query
 
 %find_lang %{name} --with-gnome --all-name
 
@@ -148,6 +142,7 @@ done
 %{_includedir}/bonobo-activation-2.0
 %{_pkgconfigdir}/*.pc
 %{_gtkdocdir}/%{name}
+%{_gtkdocdir}/bonobo-activation
 
 %files static
 %defattr(644,root,root,755)
