@@ -19,6 +19,8 @@ BuildConflicts:	bonobo-avtivation-devel >= 2.1.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Obsoletes:	libbonobo0
 
+%define		_prefix		/usr/X11R6
+%define		_mandir		%{_prefix}/man
 %define		_sysconfdir	/etc/X11/GNOME2
 %define		_gtkdocdir	%{_defaultdocdir}/gtk-doc/html
 
