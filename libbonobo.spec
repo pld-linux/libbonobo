@@ -3,7 +3,7 @@ Summary(pl):	Biblioteka do ³±czenia dokumentów w GNOME
 Summary(pt_BR):	Biblioteca para documentos compostos no GNOME
 Name:		libbonobo
 Version:	2.1.0
-Release:	1
+Release:	2
 License:	GPL
 Group:		X11/Libraries
 Source0:	ftp://ftp.gnome.org/pub/gnome/sources/%{name}/2.1/%{name}-%{version}.tar.bz2
@@ -22,6 +22,7 @@ Obsoletes:	libbonobo0
 %define		_sysconfdir	/etc/X11/GNOME2
 %define		_prefix		/usr/X11R6
 %define		_gtkdocdir	%{_defaultdocdir}/gtk-doc/html
+%define		orbit_libdir	/usr/lib/orbit-2.0
 
 %description
 libbonobo is a library that provides the necessary framework for
@@ -89,7 +90,8 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
 	pkgconfigdir=%{_pkgconfigdir} \
-	HTML_DIR=%{_gtkdocdir}
+	HTML_DIR=%{_gtkdocdir} \
+	orbittypelibdir=%{orbit_libdir}
 
 %find_lang %{name} --with-gnome --all-name
 
@@ -108,8 +110,8 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_libdir}/bonobo/monikers
 %attr(755,root,root) %{_libdir}/bonobo-*
 %attr(755,root,root) %{_libdir}/bonobo/monikers/lib*.??
-%dir %{_libdir}/orbit-2.0
-%attr(755,root,root) %{_libdir}/orbit-2.0/*.??
+%dir %{orbit_libdir}
+%attr(755,root,root) %{orbit_libdir}/*.??
 %{_datadir}/idl/bonobo-*
 
 %files devel
@@ -124,4 +126,4 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %{_libdir}/lib*.a
 %{_libdir}/bonobo/monikers/lib*.a
-%{_libdir}/orbit-2.0/*.a
+%{orbit_libdir}/*.a
