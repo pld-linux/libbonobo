@@ -12,6 +12,7 @@ URL:		http://www.gnome.org/
 BuildRequires:	ORBit2-devel >= 1:2.12.0
 BuildRequires:	autoconf
 BuildRequires:	automake
+BuildRequires:	bison
 BuildRequires:	flex
 BuildRequires:	gettext-devel
 BuildRequires:	glib2-devel >= 1:2.4.1
