@@ -6,7 +6,7 @@ Version:	2.0.1
 Release:	1
 License:	GPL
 Group:		X11/Libraries
-Source0:	http://ftp.gnome.org/pub/gnome/sources/%{name}/2.0/%{name}-%{version}.tar.bz2
+Source0:	ftp://ftp.gnome.org/pub/gnome/sources/%{name}/2.0/%{name}-%{version}.tar.bz2
 Patch0:		%{name}-GNOME_COMPILE_WARNINGS.patch
 #Patch1:		%{name}-pthread.patch
 URL:		http://www.gnome.org/
@@ -79,7 +79,7 @@ rm -f missing
 %{__autoconf}
 %{__automake}
 %configure \
-	--disable-gtk-doc \
+	--enable-gtk-doc \
 	--with-html-dir=%{_gtkdocdir}
 
 %{__make}
