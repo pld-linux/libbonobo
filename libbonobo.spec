@@ -2,21 +2,20 @@ Summary:	Library for compound documents in GNOME
 Summary(pl):	Biblioteka do ³±czenia dokumentów w GNOME
 Summary(pt_BR):	Biblioteca para documentos compostos no GNOME
 Name:		libbonobo
-Version:	2.6.2
+Version:	2.8.0
 Release:	1
 License:	GPL
 Group:		Libraries
-Source0:	http://ftp.gnome.org/pub/gnome/sources/%{name}/2.6/%{name}-%{version}.tar.bz2
-# Source0-md5:	d99ababb4569c66c3002cba97b076c31
-Patch0:		%{name}-locale-names.patch
+Source0:	http://ftp.gnome.org/pub/gnome/sources/%{name}/2.8/%{name}-%{version}.tar.bz2
+# Source0-md5:	e3358680e50e69779535d126b1c56ee7
 URL:		http://www.gnome.org/
-BuildRequires:	ORBit2-devel >= 1:2.10.2
+BuildRequires:	ORBit2-devel >= 1:2.11.2
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	flex
 BuildRequires:	gettext-devel
 BuildRequires:	glib2-devel >= 1:2.4.1
-BuildRequires:	gnome-common
+BuildRequires:	gnome-common >= 2.8.0
 BuildRequires:	gtk-doc >= 1.1
 BuildRequires:	intltool >= 0.29
 BuildRequires:	libtool
@@ -25,7 +24,7 @@ BuildRequires:	popt-devel >= 1.5
 BuildRequires:	rpm-build >= 4.1-10
 BuildRequires:	libxml2-devel >= 2.4.20
 Requires(post):	/sbin/ldconfig
-Requires:	ORBit2 >= 1:2.10.2
+Requires:	ORBit2 >= 1:2.11.2
 Provides:	bonobo-activation = %{version}
 Obsoletes:	bonobo-activation
 Obsoletes:	libbonobo0
@@ -51,7 +50,7 @@ Summary:	Include files for the libbonobo document model
 Summary(pl):	Pliki nag³ówkowe biblioteki libbonobo
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
-Requires:	ORBit2-devel >= 1:2.10.2
+Requires:	ORBit2-devel >= 1:2.11.2
 Requires:	gtk-doc-common
 Provides:	bonobo-activation-devel = %{version}
 Obsoletes:	bonobo-activation-devel
@@ -81,13 +80,10 @@ Biblioteki statyczne libbonobo.
 
 %prep
 %setup -q
-%patch0 -p1
-
-mv po/{no,nb}.po
 
 %build
 %{__libtoolize}
-%{__aclocal} -I %{_aclocaldir}/gnome2-macros
+%{__aclocal}
 %{__autoconf}
 %{__automake}
 %configure \
@@ -106,6 +102,8 @@ rm -rf $RPM_BUILD_ROOT
 rm -f $RPM_BUILD_ROOT%{_libdir}/{bonobo/monikers,orbit-2.0}/*.{la,a}
 #Seems to be only test tool during build
 rm -f $RPM_BUILD_ROOT%{_bindir}/bonobo-activation-run-query
+
+rm -r $RPM_BUILD_ROOT%{_datadir}/locale/no
 
 %find_lang %{name} --with-gnome --all-name
 
