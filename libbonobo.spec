@@ -9,11 +9,11 @@ Group:		X11/Libraries
 Source0:	ftp://ftp.gnome.org/pub/gnome/pre-gnome2/sources/%{name}/%{name}-%{version}.tar.bz2
 Patch0:		%{name}-GNOME_COMPILE_WARNINGS.patch
 URL:		http://www.gnome.org/
-BuildRequires:	ORBit2-devel
+BuildRequires:	ORBit2-devel >= 2.3.110
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	bonobo-activation-devel >= 0.9.8
-BuildRequires:	glib2-devel >= 2.0.0
+BuildRequires:	bonobo-activation-devel >= 0.9.9
+BuildRequires:	glib2-devel >= 2.0.1
 BuildRequires:	libtool
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -68,10 +68,10 @@ Biblioteki statyczne libbonobo.
 
 %build
 rm -f missing
-libtoolize --copy --force
-aclocal
-autoconf
-automake -a -c -f
+%{__libtoolize}
+%{__aclocal}
+%{__autoconf}
+%{__automake}
 %configure \
 	--enable-gtk-doc=no
 
