@@ -1,0 +1,12 @@
+diff -Nru libbonobo-2.0.0.orig/tests/Makefile.am libbonobo-2.0.0/tests/Makefile.am
+--- libbonobo-2.0.0.orig/tests/Makefile.am	Fri Nov 30 05:32:30 2001
++++ libbonobo-2.0.0/tests/Makefile.am	Thu Oct 10 13:55:45 2002
+@@ -13,7 +13,7 @@
+ 	$(WARN_CFLAGS)					\
+ 	$(LIBBONOBO_CFLAGS)
+ 
+-LDADD =	$(top_builddir)/bonobo/libbonobo-2.la
++LDADD =	$(top_builddir)/bonobo/libbonobo-2.la -lpthread
+ 
+ test_properties_server_SOURCES =			\
+ 	test-properties-server.c
