@@ -6,8 +6,9 @@ Version:	2.0.0
 Release:	5
 License:	GPL
 Group:		X11/Libraries
-Source0:	ftp://ftp.gnome.org/pub/gnome/2.0.2/sources/%{name}/%{name}-%{version}.tar.bz2
+Source0:	ftp://ftp.gnome.org/pub/GNOME/sources/%{name}/2.0/%{name}-%{version}.tar.bz2
 Patch0:		%{name}-GNOME_COMPILE_WARNINGS.patch
+Patch1:		%{name}-pthread.patch
 URL:		http://www.gnome.org/
 BuildRequires:	ORBit2-devel >= 2.4.0
 BuildRequires:	autoconf
@@ -69,6 +70,7 @@ Biblioteki statyczne libbonobo.
 %prep
 %setup -q
 %patch0 -p1
+%patch1 -p1
 
 %build
 rm -f missing
@@ -77,7 +79,7 @@ rm -f missing
 %{__autoconf}
 %{__automake}
 %configure \
-	--enable-gtk-doc \
+	--disable-gtk-doc \
 	--with-html-dir=%{_gtkdocdir}
 
 %{__make}
@@ -100,6 +102,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
+%doc AUTHORS NEWS README changes.txt
 %attr(755,root,root) %{_bindir}/*
 %attr(755,root,root) %{_libdir}/lib*.so.*.*
 %{_libdir}/bonobo/servers
@@ -112,7 +115,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files devel
 %defattr(644,root,root,755)
-%doc AUTHORS ChangeLog NEWS README changes.txt TODO 
+%doc ChangeLog TODO 
 %attr(755,root,root) %{_libdir}/lib*.??
 %{_pkgconfigdir}/*.pc
 %{_includedir}/libbonobo-*
