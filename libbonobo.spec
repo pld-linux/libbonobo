@@ -9,13 +9,10 @@ Group:		X11/Libraries
 Source0:	http://ftp.gnome.org/pub/gnome/sources/%{name}/2.0/%{name}-%{version}.tar.bz2
 Patch0:		%{name}-GNOME_COMPILE_WARNINGS.patch
 URL:		http://www.gnome.org/
-BuildRequires:	ORBit2-devel >= 2.4.0
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	bonobo-activation-devel >= 1.0.0
-BuildRequires:	glib2-devel >= 2.0.3
+BuildRequires:	bonobo-activation-devel
 BuildRequires:	libtool
-BuildConflicts:	bonobo-avtivation-devel >= 2.1.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Obsoletes:	libbonobo0
 
@@ -44,9 +41,8 @@ Summary:	Include files for the libbonobo document model
 Summary(pl):	Pliki nag³ówkowe biblioteki libbonobo
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{version}
-Requires:	bonobo-activation-devel >= 1.0.0
+Requires:	bonobo-activation-devel
 Requires:	gtk-doc-common
-Conflicts:	bonobo-activation-devel >= 2.1.0
 Obsoletes:	libbonobo0-devel
 
 %description devel
