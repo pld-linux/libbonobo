@@ -18,6 +18,7 @@ BuildRequires:	glib2-devel >= 2.2.2
 BuildRequires:	gtk-doc >= 1.1
 BuildRequires:	libtool
 BuildRequires:	rpm-build >= 4.1-10
+Requires:	ORBit2 >= 2.7.2
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Provides:	bonobo-activation = %{version}
 Obsoletes:	libbonobo0
