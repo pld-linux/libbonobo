@@ -93,7 +93,7 @@ rm -f missing
 rm -rf $RPM_BUILD_ROOT
 
 %{__make} install \
-	DESTDIR=$RPM_BUILD_ROOT 
+	DESTDIR=$RPM_BUILD_ROOT
 
 # no static modules
 # no *.la for orbit modules (are *.la for monikers necessary???)
@@ -138,7 +138,7 @@ done
 
 %files devel
 %defattr(644,root,root,755)
-%doc ChangeLog TODO 
+%doc ChangeLog TODO
 %attr(755,root,root) %{_libdir}/lib*.so
 %{_libdir}/lib*.la
 %{_includedir}/libbonobo-*
