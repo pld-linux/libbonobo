@@ -15,6 +15,7 @@ BuildRequires:	automake
 BuildRequires:	bonobo-activation-devel >= 1.0.0
 BuildRequires:	glib2-devel >= 2.0.3
 BuildRequires:	libtool
+BuildConflicts:	bonobo-avtivation-devel >= 2.1.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Obsoletes:	libbonobo0
 
@@ -42,8 +43,9 @@ Summary:	Include files for the libbonobo document model
 Summary(pl):	Pliki nag³ówkowe biblioteki libbonobo
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{version}
-Requires:	bonobo-activation-devel
+Requires:	bonobo-activation-devel >= 1.0.0
 Requires:	gtk-doc-common
+Conflicts:	bonobo-activation-devel >= 2.1.0
 Obsoletes:	libbonobo0-devel
 
 %description devel
