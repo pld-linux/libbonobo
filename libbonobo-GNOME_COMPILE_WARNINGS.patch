@@ -1,5 +1,5 @@
---- configure.in~	Thu May  2 12:58:18 2002
-+++ configure.in	Thu May  2 12:58:18 2002
+--- libbonobo-1.116.0/configure.in~	Thu May  2 12:58:18 2002
++++ libbonobo-1.116.0/configure.in	Thu May  2 12:58:18 2002
 @@ -25,12 +25,6 @@
  ALL_LINGUAS="az bg ca es fi fr gl hu it ja ko ms nn no pl pt ru sk sl sv ta tr uk zh_CN zh_TW"
  AM_GLIB_GNU_GETTEXT
