@@ -2,24 +2,24 @@ Summary:	Library for compound documents in GNOME
 Summary(pl):	Biblioteka do ³±czenia dokumentów w GNOME
 Summary(pt_BR):	Biblioteca para documentos compostos no GNOME
 Name:		libbonobo
-Version:	2.2.1
-Release:	1
+Version:	2.3.1
+Release:	0.5
 License:	GPL
 Group:		Libraries
-Source0:	http://ftp.gnome.org/pub/gnome/sources/%{name}/2.2/%{name}-%{version}.tar.bz2
+Source0:	http://ftp.gnome.org/pub/gnome/sources/%{name}/2.3/%{name}-%{version}.tar.bz2
 Patch0:		%{name}-GNOME_COMPILE_WARNINGS.patch
 URL:		http://www.gnome.org/
-BuildRequires:	ORBit2-devel >= 2.6.0
+BuildRequires:	ORBit2-devel >= 2.7.1
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	bonobo-activation-devel >= 2.2.0
-BuildRequires:	glib2-devel >= 2.0.3
+BuildRequires:	glib2-devel >= 2.2.1
 BuildRequires:	gtk-doc
 BuildRequires:	libtool
-BuildRequires:	rpm-build >= 4.1-8.2
-Requires:	bonobo-activation >= 2.2.0
+BuildRequires:	rpm-build >= 4.1-10
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+Provides:	bonobo-activation = %{version}
 Obsoletes:	libbonobo0
+Obsoletes:	bonobo-activation
 
 %description
 libbonobo is a library that provides the necessary framework for
@@ -41,9 +41,10 @@ Summary:	Include files for the libbonobo document model
 Summary(pl):	Pliki nag³ówkowe biblioteki libbonobo
 Group:		Development/Libraries
 Requires:	%{name} = %{version}
-Requires:	bonobo-activation-devel
 Requires:	gtk-doc-common
+Provides:	bonobo-activation-devel = %{version}
 Obsoletes:	libbonobo0-devel
+Obsoletes:	bonobo-activation-devel
 
 %description devel
 This package provides the necessary include files to allow you to
@@ -58,6 +59,8 @@ Summary:	Static libbonobo libraries
 Summary(pl):	Biblioteki statyczne libbonobo
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}
+Provides:	bonobo-activation-static = %{version}
+Obsoletes:	bonobo-activation-static
 
 %description static
 Static libbonobo libraries.
@@ -73,7 +76,7 @@ Biblioteki statyczne libbonobo.
 rm -f missing
 %{__libtoolize}
 %{__aclocal}
-%{__autoconf}
+%%{__autoconf}
 %{__automake}
 %configure \
 	--enable-gtk-doc \
@@ -85,39 +88,45 @@ rm -f missing
 rm -rf $RPM_BUILD_ROOT
 
 %{__make} install \
-	DESTDIR=$RPM_BUILD_ROOT \
-	pkgconfigdir=%{_pkgconfigdir} \
-	HTML_DIR=%{_gtkdocdir}
+	DESTDIR=$RPM_BUILD_ROOT 
 
 %find_lang %{name} --with-gnome --all-name
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%post   -p /sbin/ldconfig
+%post
+/sbin/ldconfig
+for item in /usr/lib/bonobo/servers /usr/X11R6/lib/bonobo/servers; do
+    /usr/sbin/bonobo-activation-sysconf --add-directory=$item
+done
+
 %postun -p /sbin/ldconfig
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
 %doc AUTHORS NEWS README changes.txt
 %attr(755,root,root) %{_bindir}/*
+%attr(755,root,root) %{_sbindir}/*
 %attr(755,root,root) %{_libdir}/lib*.so.*.*
-%{_libdir}/bonobo/servers/*
-%dir %{_libdir}/bonobo/monikers
 %attr(755,root,root) %{_libdir}/bonobo-*
-%{_libdir}/bonobo/monikers/lib*.la
 %attr(755,root,root) %{_libdir}/bonobo/monikers/lib*.so
-%{_libdir}/orbit-2.0/*.la
 %attr(755,root,root) %{_libdir}/orbit-2.0/*.so
+%dir %{_libdir}/bonobo/monikers
+%{_libdir}/bonobo/monikers/lib*.la
+%{_libdir}/bonobo/servers/*
+%{_libdir}/orbit-2.0/*.la
 %{_datadir}/idl/bonobo-*
+%{_mandir}/man1/*
 
 %files devel
 %defattr(644,root,root,755)
 %doc ChangeLog TODO 
-%{_libdir}/lib*.la
 %attr(755,root,root) %{_libdir}/lib*.so
-%{_pkgconfigdir}/*.pc
+%{_libdir}/lib*.la
 %{_includedir}/libbonobo-*
+%{_includedir}/bonobo-activation-2.0
+%{_pkgconfigdir}/*.pc
 %{_gtkdocdir}/%{name}
 
 %files static
