@@ -2,26 +2,30 @@ Summary:	Library for compound documents in GNOME
 Summary(pl):	Biblioteka do ³±czenia dokumentów w GNOME
 Summary(pt_BR):	Biblioteca para documentos compostos no GNOME
 Name:		libbonobo
-Version:	2.4.3
+Version:	2.6.0
 Release:	1
 License:	GPL
 Group:		Libraries
-Source0:	http://ftp.gnome.org/pub/gnome/sources/%{name}/2.4/%{name}-%{version}.tar.bz2
-# Source0-md5:	420148e96773e6f27a49f1bbebb28fdd
+Source0:	http://ftp.gnome.org/pub/gnome/sources/%{name}/2.6/%{name}-%{version}.tar.bz2
+# Source0-md5:	078942cb9c6a1a31f93958e993353f45
+Patch0:		%{name}-locale-names.patch
 URL:		http://www.gnome.org/
-BuildRequires:	ORBit2-devel >= 1:2.7.5
+BuildRequires:	ORBit2-devel >= 1:2.9.2
 BuildRequires:	autoconf
 BuildRequires:	automake
+BuildRequires:	flex
 BuildRequires:	gettext-devel
-BuildRequires:	glib2-devel >= 2.2.2
+BuildRequires:	glib2-devel >= 1:2.3.2
 BuildRequires:	gnome-common
 BuildRequires:	gtk-doc >= 1.1
-BuildRequires:	intltool
+BuildRequires:	intltool >= 0.29
 BuildRequires:	libtool
+BuildRequires:	perl-base
+BuildRequires:	popt-devel >= 1.5
 BuildRequires:	rpm-build >= 4.1-10
-BuildRequires:	libxml2-devel
+BuildRequires:	libxml2-devel >= 2.4.20
 Requires(post):	/sbin/ldconfig
-Requires:	ORBit2 >= 1:2.7.5
+Requires:	ORBit2 >= 1:2.9.2
 Provides:	bonobo-activation = %{version}
 Obsoletes:	bonobo-activation
 Obsoletes:	libbonobo0
@@ -46,8 +50,8 @@ exemplo planilhas de cálculo e gráficos juntos num documento texto.
 Summary:	Include files for the libbonobo document model
 Summary(pl):	Pliki nag³ówkowe biblioteki libbonobo
 Group:		Development/Libraries
-Requires:	%{name} = %{version}
-Requires:	ORBit2-devel >= 1:2.7.5
+Requires:	%{name} = %{version}-%{release}
+Requires:	ORBit2-devel >= 1:2.9.2
 Requires:	gtk-doc-common
 Provides:	bonobo-activation-devel = %{version}
 Obsoletes:	bonobo-activation-devel
@@ -65,7 +69,7 @@ korzystaj±cych z modelu dokumentów libbonobo.
 Summary:	Static libbonobo libraries
 Summary(pl):	Biblioteki statyczne libbonobo
 Group:		Development/Libraries
-Requires:	%{name}-devel = %{version}
+Requires:	%{name}-devel = %{version}-%{release}
 Provides:	bonobo-activation-static = %{version}
 Obsoletes:	bonobo-activation-static
 
@@ -77,6 +81,9 @@ Biblioteki statyczne libbonobo.
 
 %prep
 %setup -q
+%patch0 -p1
+
+mv po/{no,nb}.po
 
 %build
 %{__libtoolize}
