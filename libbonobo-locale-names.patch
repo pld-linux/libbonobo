@@ -1,0 +1,12 @@
+diff -urN aa/libbonobo-2.6.0/configure.in libbonobo-2.6.0/configure.in
+--- aa/libbonobo-2.6.0/configure.in	2004-03-08 11:57:01.000000000 +0100
++++ libbonobo-2.6.0/configure.in	2004-03-08 13:09:55.180593296 +0100
+@@ -55,7 +55,7 @@
+ gnomelocaledir='${prefix}/${DATADIRNAME}/locale'
+ AC_SUBST(gnomelocaledir)
+ 
+-ALL_LINGUAS="am ar az be bg bn ca cs cy da de el eo es fa fi fr ga gl he hi hr hu id is it ja ko li lt lv mk ml mn ms nl nn no pl pt pt_BR ro ru sk sl sq sr sr@Latn sv ta tr uk vi wa yi zh_CN zh_TW"
++ALL_LINGUAS="am ar az be bg bn ca cs cy da de el eo es fa fi fr ga gl he hi hr hu id is it ja ko li lt lv mk ml mn ms nb nl nn pl pt pt_BR ro ru sk sl sq sr sr@Latn sv ta tr uk vi wa yi zh_CN zh_TW"
+ AM_GLIB_GNU_GETTEXT
+ 
+ GNOME_COMPILE_WARNINGS
