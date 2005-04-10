@@ -20,10 +20,10 @@ BuildRequires:	gnome-common >= 2.8.0
 BuildRequires:	gtk-doc >= 1.1
 BuildRequires:	intltool >= 0.29
 BuildRequires:	libtool
+BuildRequires:	libxml2-devel >= 2.4.20
 BuildRequires:	perl-base
 BuildRequires:	popt-devel >= 1.5
-BuildRequires:	rpm-build >= 4.1-10
-BuildRequires:	libxml2-devel >= 2.4.20
+BuildRequires:	rpmbuild(macros) >= 1.197
 Requires(post):	/sbin/ldconfig
 Requires:	ORBit2 >= 1:2.12.0
 Provides:	bonobo-activation = %{version}
@@ -112,12 +112,13 @@ rm -r $RPM_BUILD_ROOT%{_datadir}/locale/no
 rm -rf $RPM_BUILD_ROOT
 
 %post
-/sbin/ldconfig
+%ldconfig_post
 for item in /usr/lib/bonobo/servers /usr/X11R6/lib/bonobo/servers; do
 	/usr/sbin/bonobo-activation-sysconf --add-directory=$item
 done
 
-%postun -p /sbin/ldconfig
+%postun
+%ldconfig_postun
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
