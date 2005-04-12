@@ -112,13 +112,12 @@ rm -r $RPM_BUILD_ROOT%{_datadir}/locale/no
 rm -rf $RPM_BUILD_ROOT
 
 %post
-%ldconfig_post
+/sbin/ldconfig
 for item in /usr/lib/bonobo/servers /usr/X11R6/lib/bonobo/servers; do
 	/usr/sbin/bonobo-activation-sysconf --add-directory=$item
 done
 
-%postun
-%ldconfig_postun
+%postun -p /sbin/ldconfig
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
