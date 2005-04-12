@@ -24,7 +24,7 @@ BuildRequires:	libxml2-devel >= 2.4.20
 BuildRequires:	perl-base
 BuildRequires:	popt-devel >= 1.5
 BuildRequires:	rpmbuild(macros) >= 1.197
-Requires(post,postun):	/sbin/ldconfig
+Requires(post):	/sbin/ldconfig
 Requires:	ORBit2 >= 1:2.12.0
 Provides:	bonobo-activation = %{version}
 Obsoletes:	bonobo-activation
