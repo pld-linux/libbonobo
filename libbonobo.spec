@@ -81,6 +81,7 @@ Biblioteki statyczne libbonobo.
 
 %prep
 %setup -q
+sed -i -e 's|/lib|/%{_lib}|g' utils/bonobo-slay.in
 
 %build
 %{__libtoolize}
@@ -90,8 +91,8 @@ Biblioteki statyczne libbonobo.
 %configure \
 	--enable-gtk-doc \
 	--with-html-dir=%{_gtkdocdir}
-
 %{__make}
+
 
 %install
 rm -rf $RPM_BUILD_ROOT
