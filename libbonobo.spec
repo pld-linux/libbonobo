@@ -3,7 +3,7 @@ Summary(pl):	Biblioteka do ³±czenia dokumentów w GNOME
 Summary(pt_BR):	Biblioteca para documentos compostos no GNOME
 Name:		libbonobo
 Version:	2.8.1
-Release:	2
+Release:	3
 License:	GPL
 Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/gnome/sources/%{name}/2.8/%{name}-%{version}.tar.bz2
