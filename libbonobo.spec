@@ -122,7 +122,7 @@ done
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
-%config(noreplace) %{_sysconfdir}/bonobo-activation/bonobo-activation-config.xml
+%config(noreplace) %verify(not md5 size mtime) %{_sysconfdir}/bonobo-activation/bonobo-activation-config.xml
 %doc AUTHORS NEWS README changes.txt
 %attr(755,root,root) %{_bindir}/activation-client
 %attr(755,root,root) %{_bindir}/bonobo-slay
