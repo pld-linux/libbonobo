@@ -1,3 +1,4 @@
+%bcond_without	static	# don't build static library
 Summary:	Library for compound documents in GNOME
 Summary(pl):	Biblioteka do ³±czenia dokumentów w GNOME
 Summary(pt_BR):	Biblioteca para documentos compostos no GNOME
@@ -92,7 +93,8 @@ sed -i -e 's|/lib|/%{_lib}|g' utils/bonobo-slay.in
 %{__automake}
 %configure \
 	--enable-gtk-doc \
-	--with-html-dir=%{_gtkdocdir}
+	--with-html-dir=%{_gtkdocdir} \
+	%{!?with_static:--disable-static}
 %{__make}
 
 
@@ -153,6 +155,8 @@ done
 %{_gtkdocdir}/%{name}
 %{_gtkdocdir}/bonobo-activation
 
+%if %{with static}
 %files static
 %defattr(644,root,root,755)
 %{_libdir}/lib*.a
+%endif
