@@ -5,12 +5,12 @@ Summary:	Library for compound documents in GNOME
 Summary(pl):	Biblioteka do ³±czenia dokumentów w GNOME
 Summary(pt_BR):	Biblioteca para documentos compostos no GNOME
 Name:		libbonobo
-Version:	2.10.1
+Version:	2.14.0
 Release:	1
 License:	GPL
 Group:		Libraries
-Source0:	http://ftp.gnome.org/pub/gnome/sources/libbonobo/2.10/%{name}-%{version}.tar.bz2
-# Source0-md5:	927d572970d87121c8375aab1b4b1d37
+Source0:	http://ftp.gnome.org/pub/gnome/sources/libbonobo/2.14/%{name}-%{version}.tar.bz2
+# Source0-md5:	f1f0255f94e3354250d142b688013fad
 URL:		http://www.gnome.org/
 BuildRequires:	ORBit2-devel >= 1:2.12.0
 BuildRequires:	autoconf
@@ -18,7 +18,7 @@ BuildRequires:	automake
 BuildRequires:	bison
 BuildRequires:	flex
 BuildRequires:	gettext-devel
-BuildRequires:	glib2-devel >= 1:2.4.1
+BuildRequires:	glib2-devel >= 1:2.8.0
 BuildRequires:	gnome-common >= 2.8.0
 BuildRequires:	gtk-doc >= 1.1
 BuildRequires:	intltool >= 0.29
@@ -28,7 +28,6 @@ BuildRequires:	perl-base
 BuildRequires:	pkgconfig
 BuildRequires:	popt-devel >= 1.5
 BuildRequires:	rpmbuild(macros) >= 1.197
-Requires(post):	/sbin/ldconfig
 Requires:	ORBit2 >= 1:2.12.0
 Provides:	bonobo-activation = %{version}
 Obsoletes:	bonobo-activation
@@ -89,6 +88,7 @@ Biblioteki statyczne libbonobo.
 sed -i -e 's|/lib|/%{_lib}|g' utils/bonobo-slay.in
 
 %build
+%{__intltoolize}
 %{__libtoolize}
 %{__aclocal}
 %{__autoconf}
