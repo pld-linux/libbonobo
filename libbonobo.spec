@@ -1,3 +1,4 @@
+#
 # Conditional build:
 %bcond_without	static_libs	# don't build static library
 #
@@ -120,9 +121,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %post
 /sbin/ldconfig
-for item in /usr/lib/bonobo/servers /usr/X11R6/lib/bonobo/servers; do
-	/usr/sbin/bonobo-activation-sysconf --add-directory=$item
-done
+/usr/sbin/bonobo-activation-sysconf --add-directory=/usr/lib/bonobo/servers
 
 %postun -p /sbin/ldconfig
 
