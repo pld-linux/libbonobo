@@ -7,20 +7,20 @@ Summary(pl):	Biblioteka do ³±czenia dokumentów w GNOME
 Summary(pt_BR):	Biblioteca para documentos compostos no GNOME
 Name:		libbonobo
 Version:	2.14.0
-Release:	1
+Release:	2
 License:	GPL
 Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/gnome/sources/libbonobo/2.14/%{name}-%{version}.tar.bz2
 # Source0-md5:	f1f0255f94e3354250d142b688013fad
 URL:		http://www.gnome.org/
-BuildRequires:	ORBit2-devel >= 1:2.12.0
+BuildRequires:	ORBit2-devel >= 1:2.14.0
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	bison
 BuildRequires:	flex
 BuildRequires:	gettext-devel
 BuildRequires:	glib2-devel >= 1:2.8.0
-BuildRequires:	gnome-common >= 2.8.0
+BuildRequires:	gnome-common >= 2.12.0
 BuildRequires:	gtk-doc >= 1.1
 BuildRequires:	intltool >= 0.29
 BuildRequires:	libtool
@@ -29,7 +29,7 @@ BuildRequires:	perl-base
 BuildRequires:	pkgconfig
 BuildRequires:	popt-devel >= 1.5
 BuildRequires:	rpmbuild(macros) >= 1.197
-Requires:	ORBit2 >= 1:2.12.0
+Requires:	ORBit2 >= 1:2.14.0
 Provides:	bonobo-activation = %{version}
 Obsoletes:	bonobo-activation
 Obsoletes:	libbonobo0
@@ -55,7 +55,7 @@ Summary:	Include files for the libbonobo document model
 Summary(pl):	Pliki nag³ówkowe biblioteki libbonobo
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
-Requires:	ORBit2-devel >= 1:2.12.0
+Requires:	ORBit2-devel >= 1:2.14.0
 Requires:	gtk-doc-common
 Requires:	popt-devel >= 1.5
 Provides:	bonobo-activation-devel = %{version}
