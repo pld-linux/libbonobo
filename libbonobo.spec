@@ -7,7 +7,7 @@ Summary(pl):	Biblioteka do ³±czenia dokumentów w GNOME
 Summary(pt_BR):	Biblioteca para documentos compostos no GNOME
 Name:		libbonobo
 Version:	2.14.0
-Release:	2
+Release:	3
 License:	GPL
 Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/gnome/sources/libbonobo/2.14/%{name}-%{version}.tar.bz2
@@ -19,12 +19,12 @@ BuildRequires:	automake
 BuildRequires:	bison
 BuildRequires:	flex
 BuildRequires:	gettext-devel
-BuildRequires:	glib2-devel >= 1:2.8.0
+BuildRequires:	glib2-devel >= 1:2.11.2
 BuildRequires:	gnome-common >= 2.12.0
 BuildRequires:	gtk-doc >= 1.1
 BuildRequires:	intltool >= 0.29
 BuildRequires:	libtool
-BuildRequires:	libxml2-devel >= 2.4.20
+BuildRequires:	libxml2-devel >= 2.6.25
 BuildRequires:	perl-base
 BuildRequires:	pkgconfig
 BuildRequires:	popt-devel >= 1.5
@@ -89,6 +89,7 @@ Biblioteki statyczne libbonobo.
 sed -i -e 's|/lib|/%{_lib}|g' utils/bonobo-slay.in
 
 %build
+%{__gtkdocize}
 %{__intltoolize}
 %{__libtoolize}
 %{__aclocal}
