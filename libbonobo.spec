@@ -6,12 +6,12 @@ Summary:	Library for compound documents in GNOME
 Summary(pl):	Biblioteka do ³±czenia dokumentów w GNOME
 Summary(pt_BR):	Biblioteca para documentos compostos no GNOME
 Name:		libbonobo
-Version:	2.14.0
-Release:	4
+Version:	2.15.0
+Release:	1
 License:	GPL
 Group:		Libraries
-Source0:	http://ftp.gnome.org/pub/gnome/sources/libbonobo/2.14/%{name}-%{version}.tar.bz2
-# Source0-md5:	f1f0255f94e3354250d142b688013fad
+Source0:	http://ftp.gnome.org/pub/gnome/sources/libbonobo/2.15/%{name}-%{version}.tar.bz2
+# Source0-md5:	efa3d7697e2cb4b529059dde720d62b3
 URL:		http://www.gnome.org/
 BuildRequires:	ORBit2-devel >= 1:2.14.0
 BuildRequires:	autoconf
@@ -114,7 +114,6 @@ rm -f $RPM_BUILD_ROOT%{_libdir}/{bonobo/monikers,orbit-2.0}/*.{la,a}
 #Seems to be only test tool during build
 rm -f $RPM_BUILD_ROOT%{_bindir}/bonobo-activation-run-query
 
-rm -r $RPM_BUILD_ROOT%{_datadir}/locale/no
 
 %find_lang %{name} --with-gnome --all-name
 
