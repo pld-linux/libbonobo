@@ -83,7 +83,7 @@ Biblioteki statyczne libbonobo.
 
 %package apidocs
 Summary:	libbonobo API documentation
-Summary(pl):	Dokumentacja libbonobo
+Summary(pl):	Dokumentacja API libbonobo
 Group:		Documentation
 Requires:	gtk-doc-common
 
@@ -136,8 +136,8 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
-%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/bonobo-activation/bonobo-activation-config.xml
 %doc AUTHORS NEWS README changes.txt
+%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/bonobo-activation/bonobo-activation-config.xml
 %attr(755,root,root) %{_bindir}/activation-client
 %attr(755,root,root) %{_bindir}/bonobo-slay
 %attr(755,root,root) %{_bindir}/echo-client-2
