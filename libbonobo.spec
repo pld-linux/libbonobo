@@ -6,28 +6,27 @@ Summary:	Library for compound documents in GNOME
 Summary(pl):	Biblioteka do ³±czenia dokumentów w GNOME
 Summary(pt_BR):	Biblioteca para documentos compostos no GNOME
 Name:		libbonobo
-Version:	2.15.0
+Version:	2.15.2
 Release:	1
 License:	GPL
 Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/gnome/sources/libbonobo/2.15/%{name}-%{version}.tar.bz2
-# Source0-md5:	efa3d7697e2cb4b529059dde720d62b3
+# Source0-md5:	814c615847dcef1f823f1070295575c0
 URL:		http://www.gnome.org/
-BuildRequires:	ORBit2-devel >= 1:2.14.0
+BuildRequires:	ORBit2-devel >= 1:2.14.2
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	bison
 BuildRequires:	flex
 BuildRequires:	gettext-devel
-BuildRequires:	glib2-devel >= 1:2.12.0
+BuildRequires:	glib2-devel >= 1:2.12.1
 BuildRequires:	gnome-common >= 2.12.0
-BuildRequires:	gtk-doc >= 1.6
+BuildRequires:	gtk-doc >= 1.7
 BuildRequires:	intltool >= 0.35.0
 BuildRequires:	libtool
 BuildRequires:	libxml2-devel >= 1:2.6.26
 BuildRequires:	perl-base
 BuildRequires:	pkgconfig
-BuildRequires:	popt-devel >= 1.5
 BuildRequires:	rpmbuild(macros) >= 1.197
 Requires:	ORBit2 >= 1:2.14.0
 Provides:	bonobo-activation = %{version}
@@ -55,9 +54,7 @@ Summary:	Include files for the libbonobo document model
 Summary(pl):	Pliki nag³ówkowe biblioteki libbonobo
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
-Requires:	ORBit2-devel >= 1:2.14.0
-Requires:	gtk-doc-common
-Requires:	popt-devel >= 1.5
+Requires:	ORBit2-devel >= 1:2.14.2
 Provides:	bonobo-activation-devel = %{version}
 Obsoletes:	bonobo-activation-devel
 Obsoletes:	libbonobo0-devel
@@ -84,6 +81,18 @@ Static libbonobo libraries.
 %description static -l pl
 Biblioteki statyczne libbonobo.
 
+%package apidocs
+Summary:	libbonobo API documentation
+Summary(pl):	Dokumentacja libbonobo
+Group:		Documentation
+Requires:	gtk-doc-common
+
+%description apidocs
+libbonobo API documentation.
+
+%description apidocs -l pl
+Dokumentacja API libbonobo.
+
 %prep
 %setup -q
 sed -i -e 's|/lib|/%{_lib}|g' utils/bonobo-slay.in
@@ -95,7 +104,6 @@ sed -i -e 's|/lib|/%{_lib}|g' utils/bonobo-slay.in
 %{__aclocal}
 %{__autoconf}
 %{__automake}
-LDFLAGS="%{rpmldflags} -Wl,--as-needed"
 %configure \
 	--enable-gtk-doc \
 	--with-html-dir=%{_gtkdocdir} \
@@ -154,11 +162,14 @@ rm -rf $RPM_BUILD_ROOT
 %{_includedir}/libbonobo-*
 %{_includedir}/bonobo-activation-2.0
 %{_pkgconfigdir}/*.pc
-%{_gtkdocdir}/%{name}
-%{_gtkdocdir}/bonobo-activation
 
 %if %{with static_libs}
 %files static
 %defattr(644,root,root,755)
 %{_libdir}/lib*.a
 %endif
+
+%files apidocs
+%defattr(644,root,root,755)
+%{_gtkdocdir}/%{name}
+%{_gtkdocdir}/bonobo-activation
