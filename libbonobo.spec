@@ -27,6 +27,7 @@ BuildRequires:	libtool
 BuildRequires:	libxml2-devel >= 1:2.6.26
 BuildRequires:	perl-base
 BuildRequires:	pkgconfig
+BuildRequires:	popt-devel >= 1.5
 BuildRequires:	rpmbuild(macros) >= 1.197
 Requires:	ORBit2 >= 1:2.14.3
 Provides:	bonobo-activation = %{version}
@@ -55,6 +56,7 @@ Summary(pl):	Pliki nag³ówkowe biblioteki libbonobo
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	ORBit2-devel >= 1:2.14.3
+Requires:	popt-devel >= 1.5
 Provides:	bonobo-activation-devel = %{version}
 Obsoletes:	bonobo-activation-devel
 Obsoletes:	libbonobo0-devel
