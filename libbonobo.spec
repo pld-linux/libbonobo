@@ -3,8 +3,8 @@
 %bcond_without	static_libs	# don't build static library
 #
 Summary:	Library for compound documents in GNOME
-Summary(pl):	Biblioteka do ³±czenia dokumentów w GNOME
-Summary(pt_BR):	Biblioteca para documentos compostos no GNOME
+Summary(pl.UTF-8):   Biblioteka do Å‚Ä…czenia dokumentÃ³w w GNOME
+Summary(pt_BR.UTF-8):   Biblioteca para documentos compostos no GNOME
 Name:		libbonobo
 Version:	2.16.0
 Release:	2
@@ -40,19 +40,19 @@ libbonobo is a library that provides the necessary framework for
 GNOME2 applications to deal with compound documents, i.e. those with a
 spreadsheet and graphic embedded in a word-processing document.
 
-%description -l pl
-libbonobo jest bibliotek± daj±c± aplikacjom GNOME2 szkielet
-pozwalaj±cy im pracowaæ ze z³o¿onymi dokumentami. Dziêki niemu mo¿na
-np. osadziæ arkusz kalkulacyjny i grafikê w dokumencie edytora tekstu.
+%description -l pl.UTF-8
+libbonobo jest bibliotekÄ… dajÄ…cÄ… aplikacjom GNOME2 szkielet
+pozwalajÄ…cy im pracowaÄ‡ ze zÅ‚oÅ¼onymi dokumentami. DziÄ™ki niemu moÅ¼na
+np. osadziÄ‡ arkusz kalkulacyjny i grafikÄ™ w dokumencie edytora tekstu.
 
-%description -l pt_BR
-libbonobo é uma biblioteca que fornece uma camada necessária para os
+%description -l pt_BR.UTF-8
+libbonobo Ã© uma biblioteca que fornece uma camada necessÃ¡ria para os
 aplicativos do GNOME2 funcionarem com documentos compostos, por
-exemplo planilhas de cálculo e gráficos juntos num documento texto.
+exemplo planilhas de cÃ¡lculo e grÃ¡ficos juntos num documento texto.
 
 %package devel
 Summary:	Include files for the libbonobo document model
-Summary(pl):	Pliki nag³ówkowe biblioteki libbonobo
+Summary(pl.UTF-8):   Pliki nagÅ‚Ã³wkowe biblioteki libbonobo
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	ORBit2-devel >= 1:2.14.3
@@ -65,13 +65,13 @@ Obsoletes:	libbonobo0-devel
 This package provides the necessary include files to allow you to
 develop programs using the libbonobo document model.
 
-%description devel -l pl
-Ten pakiet zawiera pliki nag³ówkowe potrzebne do tworzenia programów
-korzystaj±cych z modelu dokumentów libbonobo.
+%description devel -l pl.UTF-8
+Ten pakiet zawiera pliki nagÅ‚Ã³wkowe potrzebne do tworzenia programÃ³w
+korzystajÄ…cych z modelu dokumentÃ³w libbonobo.
 
 %package static
 Summary:	Static libbonobo libraries
-Summary(pl):	Biblioteki statyczne libbonobo
+Summary(pl.UTF-8):   Biblioteki statyczne libbonobo
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 Provides:	bonobo-activation-static = %{version}
@@ -80,19 +80,19 @@ Obsoletes:	bonobo-activation-static
 %description static
 Static libbonobo libraries.
 
-%description static -l pl
+%description static -l pl.UTF-8
 Biblioteki statyczne libbonobo.
 
 %package apidocs
 Summary:	libbonobo API documentation
-Summary(pl):	Dokumentacja API libbonobo
+Summary(pl.UTF-8):   Dokumentacja API libbonobo
 Group:		Documentation
 Requires:	gtk-doc-common
 
 %description apidocs
 libbonobo API documentation.
 
-%description apidocs -l pl
+%description apidocs -l pl.UTF-8
 Dokumentacja API libbonobo.
 
 %prep
