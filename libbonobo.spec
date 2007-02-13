@@ -3,8 +3,8 @@
 %bcond_without	static_libs	# don't build static library
 #
 Summary:	Library for compound documents in GNOME
-Summary(pl.UTF-8):   Biblioteka do łączenia dokumentów w GNOME
-Summary(pt_BR.UTF-8):   Biblioteca para documentos compostos no GNOME
+Summary(pl.UTF-8):	Biblioteka do łączenia dokumentów w GNOME
+Summary(pt_BR.UTF-8):	Biblioteca para documentos compostos no GNOME
 Name:		libbonobo
 Version:	2.16.0
 Release:	2
@@ -52,7 +52,7 @@ exemplo planilhas de cálculo e gráficos juntos num documento texto.
 
 %package devel
 Summary:	Include files for the libbonobo document model
-Summary(pl.UTF-8):   Pliki nagłówkowe biblioteki libbonobo
+Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki libbonobo
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	ORBit2-devel >= 1:2.14.3
@@ -71,7 +71,7 @@ korzystających z modelu dokumentów libbonobo.
 
 %package static
 Summary:	Static libbonobo libraries
-Summary(pl.UTF-8):   Biblioteki statyczne libbonobo
+Summary(pl.UTF-8):	Biblioteki statyczne libbonobo
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 Provides:	bonobo-activation-static = %{version}
@@ -85,7 +85,7 @@ Biblioteki statyczne libbonobo.
 
 %package apidocs
 Summary:	libbonobo API documentation
-Summary(pl.UTF-8):   Dokumentacja API libbonobo
+Summary(pl.UTF-8):	Dokumentacja API libbonobo
 Group:		Documentation
 Requires:	gtk-doc-common
 
