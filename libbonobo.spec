@@ -6,30 +6,31 @@ Summary:	Library for compound documents in GNOME
 Summary(pl.UTF-8):	Biblioteka do łączenia dokumentów w GNOME
 Summary(pt_BR.UTF-8):	Biblioteca para documentos compostos no GNOME
 Name:		libbonobo
-Version:	2.16.0
-Release:	2
+Version:	2.18.0
+Release:	1
 License:	GPL
 Group:		Libraries
-Source0:	http://ftp.gnome.org/pub/gnome/sources/libbonobo/2.16/%{name}-%{version}.tar.bz2
-# Source0-md5:	30cdcf2b5316888f10fea6362b38499c
+Source0:	http://ftp.gnome.org/pub/gnome/sources/libbonobo/2.18/%{name}-%{version}.tar.bz2
+# Source0-md5:	8f0676e63420abf622f799cdd24ed9cc
 URL:		http://www.gnome.org/
-BuildRequires:	ORBit2-devel >= 1:2.14.3
+BuildRequires:	ORBit2-devel >= 1:2.14.7
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	bison
 BuildRequires:	flex
 BuildRequires:	gettext-devel
-BuildRequires:	glib2-devel >= 1:2.12.3
+BuildRequires:	glib2-devel >= 1:2.12.11
 BuildRequires:	gnome-common >= 2.12.0
-BuildRequires:	gtk-doc >= 1.7
-BuildRequires:	intltool >= 0.35.0
+BuildRequires:	gtk-doc >= 1.8
+BuildRequires:	intltool >= 0.35.5
 BuildRequires:	libtool
-BuildRequires:	libxml2-devel >= 1:2.6.26
+BuildRequires:	libxml2-devel >= 1:2.6.27
 BuildRequires:	perl-base
 BuildRequires:	pkgconfig
 BuildRequires:	popt-devel >= 1.5
 BuildRequires:	rpmbuild(macros) >= 1.197
-Requires:	ORBit2 >= 1:2.14.3
+BuildRequires:	sed >= 4.0
+Requires:	ORBit2 >= 1:2.14.7
 Provides:	bonobo-activation = %{version}
 Obsoletes:	bonobo-activation
 Obsoletes:	libbonobo0
@@ -55,7 +56,8 @@ Summary:	Include files for the libbonobo document model
 Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki libbonobo
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
-Requires:	ORBit2-devel >= 1:2.14.3
+Requires:	ORBit2-devel >= 1:2.14.7
+Requires:	glib2-devel >= 1:2.12.11
 Requires:	popt-devel >= 1.5
 Provides:	bonobo-activation-devel = %{version}
 Obsoletes:	bonobo-activation-devel
@@ -101,6 +103,7 @@ sed -i -e 's|/lib|/%{_lib}|g' utils/bonobo-slay.in
 
 %build
 %{__gtkdocize}
+%{__glib_gettextize}
 %{__intltoolize}
 %{__libtoolize}
 %{__aclocal}
