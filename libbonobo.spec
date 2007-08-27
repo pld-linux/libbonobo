@@ -10,7 +10,7 @@ Version:	2.19.6
 Release:	1
 License:	GPL
 Group:		Libraries
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/libbonobo/2.18/%{name}-%{version}.tar.bz2
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/libbonobo/2.19/%{name}-%{version}.tar.bz2
 # Source0-md5:	78ebc03b60ebf2a2c4b3ebcefdf9f730
 URL:		http://www.gnome.org/
 BuildRequires:	ORBit2-devel >= 1:2.14.8
