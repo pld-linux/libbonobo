@@ -6,31 +6,31 @@ Summary:	Library for compound documents in GNOME
 Summary(pl.UTF-8):	Biblioteka do łączenia dokumentów w GNOME
 Summary(pt_BR.UTF-8):	Biblioteca para documentos compostos no GNOME
 Name:		libbonobo
-Version:	2.18.0
+Version:	2.20.0
 Release:	1
 License:	GPL
 Group:		Libraries
-Source0:	http://ftp.gnome.org/pub/gnome/sources/libbonobo/2.18/%{name}-%{version}.tar.bz2
-# Source0-md5:	8f0676e63420abf622f799cdd24ed9cc
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/libbonobo/2.20/%{name}-%{version}.tar.bz2
+# Source0-md5:	5656fc628f2b327cfdcab493a8f95f7f
 URL:		http://www.gnome.org/
-BuildRequires:	ORBit2-devel >= 1:2.14.7
+BuildRequires:	ORBit2-devel >= 1:2.14.8
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	bison
 BuildRequires:	flex
 BuildRequires:	gettext-devel
-BuildRequires:	glib2-devel >= 1:2.12.11
-BuildRequires:	gnome-common >= 2.12.0
+BuildRequires:	glib2-devel >= 1:2.14.0
+BuildRequires:	gnome-common >= 2.18.0
 BuildRequires:	gtk-doc >= 1.8
-BuildRequires:	intltool >= 0.35.5
+BuildRequires:	intltool >= 0.36.1
 BuildRequires:	libtool
-BuildRequires:	libxml2-devel >= 1:2.6.27
+BuildRequires:	libxml2-devel >= 1:2.6.29
 BuildRequires:	perl-base
 BuildRequires:	pkgconfig
 BuildRequires:	popt-devel >= 1.5
 BuildRequires:	rpmbuild(macros) >= 1.197
 BuildRequires:	sed >= 4.0
-Requires:	ORBit2 >= 1:2.14.7
+Requires:	ORBit2 >= 1:2.14.8
 Provides:	bonobo-activation = %{version}
 Obsoletes:	bonobo-activation
 Obsoletes:	libbonobo0
@@ -56,8 +56,8 @@ Summary:	Include files for the libbonobo document model
 Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki libbonobo
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
-Requires:	ORBit2-devel >= 1:2.14.7
-Requires:	glib2-devel >= 1:2.12.11
+Requires:	ORBit2-devel >= 1:2.14.8
+Requires:	glib2-devel >= 1:2.14.0
 Requires:	popt-devel >= 1.5
 Provides:	bonobo-activation-devel = %{version}
 Obsoletes:	bonobo-activation-devel
