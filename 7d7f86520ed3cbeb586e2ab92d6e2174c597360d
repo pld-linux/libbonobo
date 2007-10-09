@@ -1,0 +1,1 @@
+- added patch with fix build libbonobo in environments without bonobo-activation from separate package, release 2
