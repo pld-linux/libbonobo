@@ -6,16 +6,16 @@ Summary:	Library for compound documents in GNOME
 Summary(pl.UTF-8):	Biblioteka do łączenia dokumentów w GNOME
 Summary(pt_BR.UTF-8):	Biblioteca para documentos compostos no GNOME
 Name:		libbonobo
-Version:	2.20.2
+Version:	2.20.3
 Release:	1
 License:	GPL
 Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/libbonobo/2.20/%{name}-%{version}.tar.bz2
-# Source0-md5:	57c706962674a2ad6480943ac31055ec
+# Source0-md5:	db152a4e97eaf2670b666fef45098413
 URL:		http://www.gnome.org/
 BuildRequires:	ORBit2-devel >= 1:2.14.8
 BuildRequires:	autoconf
-BuildRequires:	automake
+BuildRequires:	automake >= 1:1.9
 BuildRequires:	bison
 BuildRequires:	flex
 BuildRequires:	gettext-devel
@@ -151,8 +151,9 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/activation-client
 %attr(755,root,root) %{_bindir}/bonobo-slay
 %attr(755,root,root) %{_bindir}/echo-client-2
-%attr(755,root,root) %{_sbindir}/*
-%attr(755,root,root) %{_libdir}/lib*.so.*.*.*
+%attr(755,root,root) %{_sbindir}/bonobo-activation-sysconf
+%attr(755,root,root) %{_libdir}/libbonobo-2.so.*.*.*
+%attr(755,root,root) %{_libdir}/libbonobo-activation.so.*.*.*
 %attr(755,root,root) %{_libdir}/bonobo-*
 %attr(755,root,root) %{_libdir}/bonobo/monikers/lib*.so
 %attr(755,root,root) %{_libdir}/orbit-2.0/*.so
@@ -160,23 +161,27 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_libdir}/bonobo
 %dir %{_libdir}/bonobo/monikers
 %dir %{_libdir}/bonobo/servers
-%{_libdir}/bonobo/servers/*
+%{_libdir}/bonobo/servers/*.server
 %{_datadir}/idl/bonobo-*
-%{_mandir}/man1/*
+%{_mandir}/man1/*.1*
 
 %files devel
 %defattr(644,root,root,755)
 %doc ChangeLog TODO
-%attr(755,root,root) %{_libdir}/lib*.so
-%{_libdir}/lib*.la
-%{_includedir}/libbonobo-*
+%attr(755,root,root) %{_libdir}/libbonobo-2.so
+%attr(755,root,root) %{_libdir}/libbonobo-activation.so
+%{_libdir}/libbonobo-2.la
+%{_libdir}/libbonobo-activation.la
+%{_includedir}/libbonobo-2.0
 %{_includedir}/bonobo-activation-2.0
-%{_pkgconfigdir}/*.pc
+%{_pkgconfigdir}/bonobo-activation-2.0.pc
+%{_pkgconfigdir}/libbonobo-2.0.pc
 
 %if %{with static_libs}
 %files static
 %defattr(644,root,root,755)
-%{_libdir}/lib*.a
+%{_libdir}/libbonobo-2.a
+%{_libdir}/libbonobo-activation.a
 %endif
 
 %files apidocs
