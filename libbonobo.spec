@@ -6,25 +6,25 @@ Summary:	Library for compound documents in GNOME
 Summary(pl.UTF-8):	Biblioteka do łączenia dokumentów w GNOME
 Summary(pt_BR.UTF-8):	Biblioteca para documentos compostos no GNOME
 Name:		libbonobo
-Version:	2.20.3
+Version:	2.21.90
 Release:	1
 License:	GPL
 Group:		Libraries
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/libbonobo/2.20/%{name}-%{version}.tar.bz2
-# Source0-md5:	db152a4e97eaf2670b666fef45098413
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/libbonobo/2.21/%{name}-%{version}.tar.bz2
+# Source0-md5:	bcf24d3d3482a1875ce01b33cf154a85
 URL:		http://www.gnome.org/
 BuildRequires:	ORBit2-devel >= 1:2.14.8
-BuildRequires:	autoconf
+BuildRequires:	autoconf >= 2.59
 BuildRequires:	automake >= 1:1.9
 BuildRequires:	bison
 BuildRequires:	flex
 BuildRequires:	gettext-devel
-BuildRequires:	glib2-devel >= 1:2.14.1
+BuildRequires:	glib2-devel >= 1:2.15.4
 BuildRequires:	gnome-common >= 2.20.0
 BuildRequires:	gtk-doc >= 1.8
-BuildRequires:	intltool >= 0.36.1
+BuildRequires:	intltool >= 0.37.0
 BuildRequires:	libtool
-BuildRequires:	libxml2-devel >= 1:2.6.29
+BuildRequires:	libxml2-devel >= 1:2.6.31
 BuildRequires:	perl-base
 BuildRequires:	pkgconfig
 BuildRequires:	popt-devel >= 1.5
@@ -59,7 +59,7 @@ Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki libbonobo
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	ORBit2-devel >= 1:2.14.8
-Requires:	glib2-devel >= 1:2.14.1
+Requires:	glib2-devel >= 1:2.15.4
 Requires:	popt-devel >= 1.5
 Provides:	bonobo-activation-devel = %{version}
 Obsoletes:	bonobo-activation-devel
@@ -113,6 +113,7 @@ mv -f po/sr@{Latn,latin}.po
 %{__libtoolize}
 %{__aclocal}
 %{__autoconf}
+%{__autoheader}
 %{__automake}
 %configure \
 	--enable-gtk-doc \
@@ -153,7 +154,9 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/echo-client-2
 %attr(755,root,root) %{_sbindir}/bonobo-activation-sysconf
 %attr(755,root,root) %{_libdir}/libbonobo-2.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libbonobo-2.so.0
 %attr(755,root,root) %{_libdir}/libbonobo-activation.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libbonobo-activation.so.4
 %attr(755,root,root) %{_libdir}/bonobo-*
 %attr(755,root,root) %{_libdir}/bonobo/monikers/lib*.so
 %attr(755,root,root) %{_libdir}/orbit-2.0/*.so
