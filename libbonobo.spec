@@ -7,11 +7,12 @@ Summary(pl.UTF-8):	Biblioteka do łączenia dokumentów w GNOME
 Summary(pt_BR.UTF-8):	Biblioteca para documentos compostos no GNOME
 Name:		libbonobo
 Version:	2.14.0
-Release:	2
+Release:	3
 License:	GPL
 Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/libbonobo/2.14/%{name}-%{version}.tar.bz2
 # Source0-md5:	f1f0255f94e3354250d142b688013fad
+Patch0:		%{name}-popt.patch
 URL:		http://www.gnome.org/
 BuildRequires:	ORBit2-devel >= 1:2.14.0
 BuildRequires:	autoconf
@@ -100,7 +101,8 @@ Dokumentacja API libbonobo.
 
 %prep
 %setup -q
-sed -i -e 's|/lib|/%{_lib}|g' utils/bonobo-slay.in
+%patch0 -p1
+%{__sed} -i -e 's|/lib|/%{_lib}|g' utils/bonobo-slay.in
 
 %build
 %{__intltoolize}
