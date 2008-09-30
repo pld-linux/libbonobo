@@ -1,0 +1,13 @@
+--- libbonobo-2.0/bonobo/bonobo-i18n.h~	2008-09-30 09:21:22.879324573 +0300
++++ libbonobo-2.0/bonobo/bonobo-i18n.h	2008-09-30 09:21:14.970866000 +0300
+@@ -49,7 +49,9 @@
+ #    ifdef gettext_noop
+ #        define N_(String) gettext_noop (String)
+ #    else
+-#        define N_(String) (String)
++#        if !defined(N_)
++#            define N_(String) (String)
++#        endif
+ #    endif
+ #else
+ /* Stubs that do something close enough.  */
