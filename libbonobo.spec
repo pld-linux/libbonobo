@@ -10,7 +10,7 @@ Version:	2.14.0
 Release:	2
 License:	GPL
 Group:		Libraries
-Source0:	http://ftp.gnome.org/pub/gnome/sources/libbonobo/2.14/%{name}-%{version}.tar.bz2
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/libbonobo/2.14/%{name}-%{version}.tar.bz2
 # Source0-md5:	f1f0255f94e3354250d142b688013fad
 URL:		http://www.gnome.org/
 BuildRequires:	ORBit2-devel >= 1:2.14.0
@@ -29,6 +29,8 @@ BuildRequires:	perl-base
 BuildRequires:	pkgconfig
 BuildRequires:	popt-devel >= 1.5
 BuildRequires:	rpmbuild(macros) >= 1.197
+BuildRequires:	sed >= 4.0
+Requires(post):	/sbin/ldconfig
 Requires:	ORBit2 >= 1:2.14.0
 Provides:	bonobo-activation = %{version}
 Obsoletes:	bonobo-activation
@@ -84,6 +86,18 @@ Static libbonobo libraries.
 %description static -l pl.UTF-8
 Biblioteki statyczne libbonobo.
 
+%package apidocs
+Summary:	libbonobo API documentation
+Summary(pl.UTF-8):	Dokumentacja API libbonobo
+Group:		Documentation
+Requires:	gtk-doc-common
+
+%description apidocs
+libbonobo API documentation.
+
+%description apidocs -l pl.UTF-8
+Dokumentacja API libbonobo.
+
 %prep
 %setup -q
 sed -i -e 's|/lib|/%{_lib}|g' utils/bonobo-slay.in
@@ -109,7 +123,7 @@ rm -rf $RPM_BUILD_ROOT
 
 # no static orbit or bonobo modules and *.la for them
 rm -f $RPM_BUILD_ROOT%{_libdir}/{bonobo/monikers,orbit-2.0}/*.{la,a}
-#Seems to be only test tool during build
+# Seems to be only test tool during build
 rm -f $RPM_BUILD_ROOT%{_bindir}/bonobo-activation-run-query
 
 rm -r $RPM_BUILD_ROOT%{_datadir}/locale/no
@@ -121,19 +135,22 @@ rm -rf $RPM_BUILD_ROOT
 
 %post
 /sbin/ldconfig
-/usr/sbin/bonobo-activation-sysconf --add-directory=/usr/lib/bonobo/servers
+%{_sbindir}/bonobo-activation-sysconf --add-directory=%{_libdir}/bonobo/servers
 
 %postun -p /sbin/ldconfig
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
-%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/bonobo-activation/bonobo-activation-config.xml
 %doc AUTHORS NEWS README changes.txt
+%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/bonobo-activation/bonobo-activation-config.xml
 %attr(755,root,root) %{_bindir}/activation-client
 %attr(755,root,root) %{_bindir}/bonobo-slay
 %attr(755,root,root) %{_bindir}/echo-client-2
-%attr(755,root,root) %{_sbindir}/*
-%attr(755,root,root) %{_libdir}/lib*.so.*.*
+%attr(755,root,root) %{_sbindir}/bonobo-activation-sysconf
+%attr(755,root,root) %{_libdir}/libbonobo-2.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libbonobo-2.so.0
+%attr(755,root,root) %{_libdir}/libbonobo-activation.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libbonobo-activation.so.4
 %attr(755,root,root) %{_libdir}/bonobo-*
 %attr(755,root,root) %{_libdir}/bonobo/monikers/lib*.so
 %attr(755,root,root) %{_libdir}/orbit-2.0/*.so
@@ -141,23 +158,30 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_libdir}/bonobo
 %dir %{_libdir}/bonobo/monikers
 %dir %{_libdir}/bonobo/servers
-%{_libdir}/bonobo/servers/*
+%{_libdir}/bonobo/servers/*.server
 %{_datadir}/idl/bonobo-*
-%{_mandir}/man1/*
+%{_mandir}/man1/*.1*
 
 %files devel
 %defattr(644,root,root,755)
 %doc ChangeLog TODO
-%attr(755,root,root) %{_libdir}/lib*.so
-%{_libdir}/lib*.la
-%{_includedir}/libbonobo-*
+%attr(755,root,root) %{_libdir}/libbonobo-2.so
+%attr(755,root,root) %{_libdir}/libbonobo-activation.so
+%{_libdir}/libbonobo-2.la
+%{_libdir}/libbonobo-activation.la
+%{_includedir}/libbonobo-2.0
 %{_includedir}/bonobo-activation-2.0
-%{_pkgconfigdir}/*.pc
-%{_gtkdocdir}/%{name}
-%{_gtkdocdir}/bonobo-activation
+%{_pkgconfigdir}/bonobo-activation-2.0.pc
+%{_pkgconfigdir}/libbonobo-2.0.pc
 
 %if %{with static_libs}
 %files static
 %defattr(644,root,root,755)
-%{_libdir}/lib*.a
+%{_libdir}/libbonobo-2.a
+%{_libdir}/libbonobo-activation.a
 %endif
+
+%files apidocs
+%defattr(644,root,root,755)
+%{_gtkdocdir}/%{name}
+%{_gtkdocdir}/bonobo-activation
