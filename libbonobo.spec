@@ -7,7 +7,7 @@ Summary(pl.UTF-8):	Biblioteka do łączenia dokumentów w GNOME
 Summary(pt_BR.UTF-8):	Biblioteca para documentos compostos no GNOME
 Name:		libbonobo
 Version:	2.24.0
-Release:	1
+Release:	2
 License:	GPL
 Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/libbonobo/2.24/%{name}-%{version}.tar.bz2
@@ -30,6 +30,7 @@ BuildRequires:	pkgconfig
 BuildRequires:	popt-devel >= 1.5
 BuildRequires:	rpmbuild(macros) >= 1.197
 BuildRequires:	sed >= 4.0
+Requires(post):	/sbin/ldconfig
 Requires:	ORBit2 >= 1:2.14.8
 Provides:	bonobo-activation = %{version}
 Obsoletes:	bonobo-activation
@@ -127,7 +128,7 @@ rm -rf $RPM_BUILD_ROOT
 
 # no static orbit or bonobo modules and *.la for them
 rm -f $RPM_BUILD_ROOT%{_libdir}/{bonobo/monikers,orbit-2.0}/*.{la,a}
-#Seems to be only test tool during build
+# Seems to be only test tool during build
 rm -f $RPM_BUILD_ROOT%{_bindir}/bonobo-activation-run-query
 
 
@@ -138,7 +139,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %post
 /sbin/ldconfig
-/usr/sbin/bonobo-activation-sysconf --add-directory=/usr/lib/bonobo/servers
+%{_sbindir}/bonobo-activation-sysconf --add-directory=%{_libdir}/bonobo/servers
 
 %postun -p /sbin/ldconfig
 
