@@ -105,6 +105,8 @@ Dokumentacja API libbonobo.
 %prep
 %setup -q
 sed -i -e 's|/lib|/%{_lib}|g' utils/bonobo-slay.in
+%{__sed} -i -e 's/^en@shaw//' po/LINGUAS
+rm -f po/en@shaw.po
 
 %build
 %{__gtkdocize}
