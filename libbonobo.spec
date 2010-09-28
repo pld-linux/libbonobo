@@ -6,12 +6,12 @@ Summary:	Library for compound documents in GNOME
 Summary(pl.UTF-8):	Biblioteka do łączenia dokumentów w GNOME
 Summary(pt_BR.UTF-8):	Biblioteca para documentos compostos no GNOME
 Name:		libbonobo
-Version:	2.24.3
+Version:	2.32.0
 Release:	1
 License:	GPL
 Group:		Libraries
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/libbonobo/2.24/%{name}-%{version}.tar.bz2
-# Source0-md5:	b217cef6a187505290c66c5bf8225d38
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/libbonobo/2.32/%{name}-%{version}.tar.bz2
+# Source0-md5:	bc2b25b03ca57866a61e04852f2f53fd
 URL:		http://www.gnome.org/
 BuildRequires:	ORBit2-devel >= 1:2.14.8
 BuildRequires:	autoconf >= 2.59
@@ -21,7 +21,7 @@ BuildRequires:	dbus-glib-devel
 BuildRequires:	docbook-dtd412-xml
 BuildRequires:	flex
 BuildRequires:	gettext-devel
-BuildRequires:	glib2-devel >= 1:2.18.0
+BuildRequires:	glib2-devel >= 1:2.26.0
 BuildRequires:	gnome-common >= 2.20.0
 BuildRequires:	gtk-doc >= 1.8
 BuildRequires:	intltool >= 0.40.0
@@ -62,7 +62,7 @@ Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki libbonobo
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	ORBit2-devel >= 1:2.14.8
-Requires:	glib2-devel >= 1:2.18.0
+Requires:	glib2-devel >= 1:2.26.0
 Requires:	popt-devel >= 1.5
 Provides:	bonobo-activation-devel = %{version}
 Obsoletes:	bonobo-activation-devel
@@ -118,6 +118,7 @@ rm -f po/en@shaw.po
 %{__autoheader}
 %{__automake}
 %configure \
+	--disable-silent-rules \
 	--enable-gtk-doc \
 	--with-html-dir=%{_gtkdocdir} \
 	%{!?with_static_libs:--disable-static}
