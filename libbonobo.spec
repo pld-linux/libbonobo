@@ -7,7 +7,7 @@ Summary(pl.UTF-8):	Biblioteka do łączenia dokumentów w GNOME
 Summary(pt_BR.UTF-8):	Biblioteca para documentos compostos no GNOME
 Name:		libbonobo
 Version:	2.32.1
-Release:	2
+Release:	3
 License:	LGPL v2+ (libraries), GPL v2+ (programs)
 Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/libbonobo/2.32/%{name}-%{version}.tar.bz2
@@ -132,8 +132,9 @@ Dokumentacja API libbonobo.
 	--enable-gtk-doc \
 	--with-html-dir=%{_gtkdocdir} \
 	%{!?with_static_libs:--disable-static}
-%{__make}
 
+# build seems racy
+%{__make} -j1
 
 %install
 rm -rf $RPM_BUILD_ROOT
