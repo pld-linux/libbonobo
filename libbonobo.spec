@@ -7,8 +7,8 @@ Summary(pl.UTF-8):	Biblioteka do łączenia dokumentów w GNOME
 Summary(pt_BR.UTF-8):	Biblioteca para documentos compostos no GNOME
 Name:		libbonobo
 Version:	2.32.1
-Release:	1
-License:	GPL
+Release:	2
+License:	LGPL v2+ (libraries), GPL v2+ (programs)
 Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/libbonobo/2.32/%{name}-%{version}.tar.bz2
 # Source0-md5:	27fa902d4fdf6762ee010e7053aaf77b
@@ -55,19 +55,18 @@ aplicativos do GNOME2 funcionarem com documentos compostos, por
 exemplo planilhas de cálculo e gráficos juntos num documento texto.
 
 %package libs
-Summary:	libbonobo library itself
-Summary(pl.UTF-8):	Sama biblioteka libbonobo
+Summary:	Base libbonobo library and modules
+Summary(pl.UTF-8):	Podstawowa biblioteka libbonobo i moduły
 Group:		Libraries
-Requires(post):	/sbin/ldconfig
 Requires:	ORBit2 >= 1:2.14.8
 Obsoletes:	libbonobo0
 Conflicts:	libbonobo < 2.32.0-2
 
 %description libs
-libbonobo library itself.
+Base libbonobo library and modules.
 
 %description libs -l pl.UTF-8
-Sama biblioteka libbonobo.
+Podstawowa biblioteka libbonobo i moduły.
 
 %package devel
 Summary:	Include files for the libbonobo document model
@@ -117,9 +116,7 @@ Dokumentacja API libbonobo.
 
 %prep
 %setup -q
-sed -i -e 's|/lib|/%{_lib}|g' utils/bonobo-slay.in
-%{__sed} -i -e 's/^en@shaw//' po/LINGUAS
-rm -f po/en@shaw.po
+%{__sed} -i -e 's|/lib|/%{_lib}|g' utils/bonobo-slay.in
 
 %build
 %{__gtkdocize}
@@ -145,10 +142,9 @@ rm -rf $RPM_BUILD_ROOT
 	DESTDIR=$RPM_BUILD_ROOT
 
 # no static orbit or bonobo modules and *.la for them
-rm -f $RPM_BUILD_ROOT%{_libdir}/{bonobo/monikers,orbit-2.0}/*.{la,a}
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/{bonobo/monikers,orbit-2.0}/*.{la,a}
 # Seems to be only test tool during build
-rm -f $RPM_BUILD_ROOT%{_bindir}/bonobo-activation-run-query
-
+%{__rm} $RPM_BUILD_ROOT%{_bindir}/bonobo-activation-run-query
 
 %find_lang %{name} --with-gnome --all-name
 
@@ -158,8 +154,8 @@ rm -rf $RPM_BUILD_ROOT
 %post
 %{_sbindir}/bonobo-activation-sysconf --add-directory=%{_libdir}/bonobo/servers
 
-%post libs -p /sbin/ldconfig
-%postun libs -p /sbin/ldconfig
+%post	libs -p /sbin/ldconfig
+%postun	libs -p /sbin/ldconfig
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
@@ -170,8 +166,9 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/echo-client-2
 %attr(755,root,root) %{_sbindir}/bonobo-activation-sysconf
 %dir %{_sysconfdir}/bonobo-activation
-%{_datadir}/idl/bonobo-*
-%{_mandir}/man1/*.1*
+%{_datadir}/idl/bonobo-2.0
+%{_datadir}/idl/bonobo-activation-2.0
+%{_mandir}/man1/bonobo-activation-server.1*
 
 %files libs
 %defattr(644,root,root,755)
@@ -179,13 +176,18 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %ghost %{_libdir}/libbonobo-2.so.0
 %attr(755,root,root) %{_libdir}/libbonobo-activation.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libbonobo-activation.so.4
-%attr(755,root,root) %{_libdir}/bonobo-*
-%attr(755,root,root) %{_libdir}/bonobo/monikers/lib*.so
-%attr(755,root,root) %{_libdir}/orbit-2.0/*.so
+%attr(755,root,root) %{_libdir}/bonobo-activation-server
+%dir %{_libdir}/bonobo-2.0
+%dir %{_libdir}/bonobo-2.0/samples
+%attr(755,root,root) %{_libdir}/bonobo-2.0/samples/bonobo-echo-2
 %dir %{_libdir}/bonobo
 %dir %{_libdir}/bonobo/monikers
+%attr(755,root,root) %{_libdir}/bonobo/monikers/libmoniker_std_2.so
 %dir %{_libdir}/bonobo/servers
-%{_libdir}/bonobo/servers/*.server
+%{_libdir}/bonobo/servers/Bonobo_CosNaming_NamingContext.server
+%{_libdir}/bonobo/servers/Bonobo_Moniker_std.server
+%{_libdir}/bonobo/servers/Bonobo_Sample_Echo.server
+%attr(755,root,root) %{_libdir}/orbit-2.0/Bonobo_module.so
 
 %files devel
 %defattr(644,root,root,755)
