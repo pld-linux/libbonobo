@@ -1,0 +1,34 @@
+diff -ur libbonobo-2.32.1.orig/activation-server/Makefile.am libbonobo-2.32.1.fix/activation-server/Makefile.am
+--- libbonobo-2.32.1.orig/activation-server/Makefile.am	2010-08-18 17:41:32.000000000 +0000
++++ libbonobo-2.32.1.fix/activation-server/Makefile.am	2013-05-06 19:08:39.411510478 +0000
+@@ -17,7 +17,6 @@
+ 	$(SERVER_CFLAGS)			\
+ 	$(WARN_CFLAGS)				\
+ 	-DSERVER_CONFDIR=\"$(sysconfdir)\"	\
+-	-DG_DISABLE_DEPRECATED			\
+ 	-DG_LOG_DOMAIN=\"Bonobo-Activation-Server\" \
+ 	$(NULL)
+ 
+diff -ur libbonobo-2.32.1.orig/activation-server/Makefile.in libbonobo-2.32.1.fix/activation-server/Makefile.in
+--- libbonobo-2.32.1.orig/activation-server/Makefile.in	2011-04-04 12:14:14.000000000 +0000
++++ libbonobo-2.32.1.fix/activation-server/Makefile.in	2013-05-06 19:08:44.809510664 +0000
+@@ -341,7 +341,6 @@
+ 	$(SERVER_CFLAGS)			\
+ 	$(WARN_CFLAGS)				\
+ 	-DSERVER_CONFDIR=\"$(sysconfdir)\"	\
+-	-DG_DISABLE_DEPRECATED			\
+ 	-DG_LOG_DOMAIN=\"Bonobo-Activation-Server\" \
+ 	$(NULL)
+ 
+diff -ur libbonobo-2.32.1.orig/configure.in libbonobo-2.32.1.fix/configure.in
+--- libbonobo-2.32.1.orig/configure.in	2011-04-04 12:13:53.000000000 +0000
++++ libbonobo-2.32.1.fix/configure.in	2013-05-06 19:08:28.729510232 +0000
+@@ -132,7 +132,7 @@
+ AC_SUBST(SERVER_CFLAGS)
+ 
+ if test "$enable_maintainer_mode" = "yes"; then
+-	DISABLE_DEPRECATED_CFLAGS="-DG_DISABLE_DEPRECATED -DG_DISABLE_SINGLE_INCLUDES"
++	DISABLE_DEPRECATED_CFLAGS="-DG_DISABLE_SINGLE_INCLUDES"
+ 	AC_SUBST(DISABLE_DEPRECATED_CFLAGS)
+ fi
+ 
