@@ -1,0 +1,17 @@
+--- libbonobo-2.32.1/tests/Makefile.am~	2010-08-29 13:56:00.000000000 +0200
++++ libbonobo-2.32.1/tests/Makefile.am	2013-12-07 16:13:24.602880103 +0100
+@@ -51,11 +51,11 @@
+ 	LD_LIBRARY_PATH="$(top_builddir)/bonobo/.libs:$$LD_LIBRARY_PATH"	\
+ 	PATH="$(top_builddir)/bonobo/.libs:$$PATH"	\
+ 	BONOBO_PLUGIN_PATH="$(top_builddir)/storage-modules/.libs:$$BONOBO_PLUGIN_PATH"\
+-	BONOBO_ACTIVATION_PATH="$(srcdir)$(SEARCHPATHSEP)$$BONOBO_ACTIVATION_PATH"\
+-	MODELS_DIR="$(srcdir)/models"
++	BONOBO_ACTIVATION_PATH="$(top_srcdir)/tests/$(SEARCHPATHSEP)$$BONOBO_ACTIVATION_PATH"\
++	MODELS_DIR="$(top_srcdir)/tests/models"
+ 
+ TESTS = test-moniker$(EXEEXT) test-event-source$(EXEEXT) test-object$(EXEEXT) \
+-	test-stream-mem$(EXEEXT) $(srcdir)/test-properties.sh test-storage-mem$(EXEEXT) \
++	test-stream-mem$(EXEEXT) test-properties.sh test-storage-mem$(EXEEXT) \
+ 	test-main-loop$(EXEEXT)
+ 
+ # TESTS += test-generic-factory.sh
