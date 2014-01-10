@@ -19,7 +19,6 @@ BuildRequires:	ORBit2-devel >= 1:2.14.8
 BuildRequires:	autoconf >= 2.59
 BuildRequires:	automake >= 1:1.9
 BuildRequires:	bison
-BuildRequires:	dbus-glib-devel
 BuildRequires:	docbook-dtd412-xml
 BuildRequires:	flex
 BuildRequires:	gettext-devel
@@ -35,6 +34,8 @@ BuildRequires:	popt-devel >= 1.5
 BuildRequires:	rpmbuild(macros) >= 1.197
 BuildRequires:	sed >= 4.0
 Requires:	%{name}-libs = %{version}-%{release}
+Requires:	libxml2 >= 1:2.6.31
+Requires:	popt >= 1.5
 Provides:	bonobo-activation = %{version}
 Obsoletes:	bonobo-activation
 # sr@Latn vs. sr@latin
@@ -61,6 +62,7 @@ Summary:	Base libbonobo library and modules
 Summary(pl.UTF-8):	Podstawowa biblioteka libbonobo i moduły
 Group:		Libraries
 Requires:	ORBit2 >= 1:2.14.8
+Requires:	glib2 >= 1:2.26.0
 Obsoletes:	libbonobo0
 Conflicts:	libbonobo < 2.32.0-2
 
@@ -146,12 +148,17 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-# no static orbit or bonobo modules and *.la for them
-%{__rm} $RPM_BUILD_ROOT%{_libdir}/{bonobo/monikers,orbit-2.0}/*.{la,a}
+# no static orbit or bonobo modules and *.la for them;
+# libraries *.la obsoleted by pkg-config
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/{bonobo/monikers,orbit-2.0}/*.la \
+	$RPM_BUILD_ROOT%{_libdir}/lib*.la
+%if %{with static_libs}
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/{bonobo/monikers,orbit-2.0}/*.a
+%endif
 # Seems to be only test tool during build
 %{__rm} $RPM_BUILD_ROOT%{_bindir}/bonobo-activation-run-query
 
-%find_lang %{name} --with-gnome --all-name
+%find_lang %{name}-2.0
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -162,7 +169,7 @@ rm -rf $RPM_BUILD_ROOT
 %post	libs -p /sbin/ldconfig
 %postun	libs -p /sbin/ldconfig
 
-%files -f %{name}.lang
+%files -f %{name}-2.0.lang
 %defattr(644,root,root,755)
 %doc AUTHORS NEWS README changes.txt
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/bonobo-activation/bonobo-activation-config.xml
@@ -199,8 +206,6 @@ rm -rf $RPM_BUILD_ROOT
 %doc ChangeLog TODO
 %attr(755,root,root) %{_libdir}/libbonobo-2.so
 %attr(755,root,root) %{_libdir}/libbonobo-activation.so
-%{_libdir}/libbonobo-2.la
-%{_libdir}/libbonobo-activation.la
 %{_includedir}/libbonobo-2.0
 %{_includedir}/bonobo-activation-2.0
 %{_pkgconfigdir}/bonobo-activation-2.0.pc
