@@ -7,7 +7,7 @@ Summary(pl.UTF-8):	Biblioteka do łączenia dokumentów w GNOME
 Summary(pt_BR.UTF-8):	Biblioteca para documentos compostos no GNOME
 Name:		libbonobo
 Version:	2.32.1
-Release:	7
+Release:	8
 License:	LGPL v2+ (libraries), GPL v2+ (programs)
 Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/libbonobo/2.32/%{name}-%{version}.tar.bz2
@@ -15,7 +15,7 @@ Source0:	http://ftp.gnome.org/pub/GNOME/sources/libbonobo/2.32/%{name}-%{version
 Patch0:		%{name}-glib.patch
 Patch1:		am.patch
 URL:		http://www.gnome.org/
-BuildRequires:	ORBit2-devel >= 1:2.14.8
+BuildRequires:	ORBit2-devel >= 1:2.14.19-10
 BuildRequires:	autoconf >= 2.59
 BuildRequires:	automake >= 1:1.9
 BuildRequires:	bison
@@ -31,15 +31,17 @@ BuildRequires:	libxml2-devel >= 1:2.6.31
 BuildRequires:	perl-base
 BuildRequires:	pkgconfig
 BuildRequires:	popt-devel >= 1.5
+BuildRequires:	rpm-build >= 4.6
 BuildRequires:	rpmbuild(macros) >= 1.197
 BuildRequires:	sed >= 4.0
-Requires:	%{name}-libs = %{version}-%{release}
+Requires:	ORBit2 >= 1:2.14.8
+Requires:	glib2 >= 1:2.26.0
 Requires:	libxml2 >= 1:2.6.31
 Requires:	popt >= 1.5
 Provides:	bonobo-activation = %{version}
-Obsoletes:	bonobo-activation
-# sr@Latn vs. sr@latin
-Conflicts:	glibc-misc < 6:2.7
+Obsoletes:	bonobo-activation < 2.2.5
+Obsoletes:	libbonobo0
+Obsoletes:	libbonobo-libs < 2.32.1-8
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -57,31 +59,16 @@ libbonobo é uma biblioteca que fornece uma camada necessária para os
 aplicativos do GNOME2 funcionarem com documentos compostos, por
 exemplo planilhas de cálculo e gráficos juntos num documento texto.
 
-%package libs
-Summary:	Base libbonobo library and modules
-Summary(pl.UTF-8):	Podstawowa biblioteka libbonobo i moduły
-Group:		Libraries
-Requires:	ORBit2 >= 1:2.14.8
-Requires:	glib2 >= 1:2.26.0
-Obsoletes:	libbonobo0
-Conflicts:	libbonobo < 2.32.0-2
-
-%description libs
-Base libbonobo library and modules.
-
-%description libs -l pl.UTF-8
-Podstawowa biblioteka libbonobo i moduły.
-
 %package devel
 Summary:	Include files for the libbonobo document model
 Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki libbonobo
 Group:		Development/Libraries
-Requires:	%{name}-libs = %{version}-%{release}
+Requires:	%{name} = %{version}-%{release}
 Requires:	ORBit2-devel >= 1:2.14.8
 Requires:	glib2-devel >= 1:2.26.0
 Requires:	popt-devel >= 1.5
 Provides:	bonobo-activation-devel = %{version}
-Obsoletes:	bonobo-activation-devel
+Obsoletes:	bonobo-activation-devel < 2.2.5
 Obsoletes:	libbonobo0-devel
 
 %description devel
@@ -98,7 +85,7 @@ Summary(pl.UTF-8):	Biblioteki statyczne libbonobo
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 Provides:	bonobo-activation-static = %{version}
-Obsoletes:	bonobo-activation-static
+Obsoletes:	bonobo-activation-static < 2.2.5
 
 %description static
 Static libbonobo libraries.
@@ -123,7 +110,16 @@ Dokumentacja API libbonobo.
 %setup -q
 %patch0 -p1
 %patch1 -p1
+
 %{__sed} -i -e 's|/lib|/%{_lib}|g' utils/bonobo-slay.in
+
+# gtk-doc doesn't accept legacy encodings
+for f in bonobo/bonobo-storage-memory.c bonobo/bonobo-storage-memory.h \
+	bonobo/bonobo-generic-factory.c bonobo/bonobo-generic-factory.h \
+	bonobo/bonobo-persist-client.c bonobo/bonobo-persist-client.h ; do
+    iconv -f ISO-8859-1 -t UTF-8 -o "${f}.tmp" "$f"
+    %{__mv} "${f}.tmp" "$f"
+done
 
 %build
 %{__gtkdocize}
@@ -135,10 +131,10 @@ Dokumentacja API libbonobo.
 %{__autoheader}
 %{__automake}
 %configure \
-	--disable-silent-rules \
 	--enable-gtk-doc \
-	--with-html-dir=%{_gtkdocdir} \
-	%{!?with_static_libs:--disable-static}
+	--disable-silent-rules \
+	%{!?with_static_libs:--disable-static} \
+	--with-html-dir=%{_gtkdocdir}
 
 # build seems racy
 %{__make} -j1
@@ -165,31 +161,23 @@ rm -rf $RPM_BUILD_ROOT
 rm -rf $RPM_BUILD_ROOT
 
 %post
+/sbin/ldconfig
 %{_sbindir}/bonobo-activation-sysconf --add-directory=%{_libdir}/bonobo/servers
 
-%post	libs -p /sbin/ldconfig
-%postun	libs -p /sbin/ldconfig
+%postun -p /sbin/ldconfig
 
 %files -f %{name}-2.0.lang
 %defattr(644,root,root,755)
-%doc AUTHORS NEWS README changes.txt
-%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/bonobo-activation/bonobo-activation-config.xml
+%doc AUTHORS ChangeLog NEWS README TODO changes.txt
 %attr(755,root,root) %{_bindir}/activation-client
 %attr(755,root,root) %{_bindir}/bonobo-slay
 %attr(755,root,root) %{_bindir}/echo-client-2
 %attr(755,root,root) %{_sbindir}/bonobo-activation-sysconf
-%dir %{_sysconfdir}/bonobo-activation
-%{_datadir}/idl/bonobo-2.0
-%{_datadir}/idl/bonobo-activation-2.0
-%{_mandir}/man1/bonobo-activation-server.1*
-
-%files libs
-%defattr(644,root,root,755)
+%attr(755,root,root) %{_libexecdir}/bonobo-activation-server
 %attr(755,root,root) %{_libdir}/libbonobo-2.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libbonobo-2.so.0
 %attr(755,root,root) %{_libdir}/libbonobo-activation.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libbonobo-activation.so.4
-%attr(755,root,root) %{_libdir}/bonobo-activation-server
 %dir %{_libdir}/bonobo-2.0
 %dir %{_libdir}/bonobo-2.0/samples
 %attr(755,root,root) %{_libdir}/bonobo-2.0/samples/bonobo-echo-2
@@ -201,10 +189,14 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/bonobo/servers/Bonobo_Moniker_std.server
 %{_libdir}/bonobo/servers/Bonobo_Sample_Echo.server
 %attr(755,root,root) %{_libdir}/orbit-2.0/Bonobo_module.so
+%{_datadir}/idl/bonobo-2.0
+%{_datadir}/idl/bonobo-activation-2.0
+%dir %{_sysconfdir}/bonobo-activation
+%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/bonobo-activation/bonobo-activation-config.xml
+%{_mandir}/man1/bonobo-activation-server.1*
 
 %files devel
 %defattr(644,root,root,755)
-%doc ChangeLog TODO
 %attr(755,root,root) %{_libdir}/libbonobo-2.so
 %attr(755,root,root) %{_libdir}/libbonobo-activation.so
 %{_includedir}/libbonobo-2.0
@@ -221,5 +213,5 @@ rm -rf $RPM_BUILD_ROOT
 
 %files apidocs
 %defattr(644,root,root,755)
-%{_gtkdocdir}/%{name}
 %{_gtkdocdir}/bonobo-activation
+%{_gtkdocdir}/libbonobo
