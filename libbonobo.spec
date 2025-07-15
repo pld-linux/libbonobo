@@ -7,7 +7,7 @@ Summary(pl.UTF-8):	Biblioteka do łączenia dokumentów w GNOME
 Summary(pt_BR.UTF-8):	Biblioteca para documentos compostos no GNOME
 Name:		libbonobo
 Version:	2.32.1
-Release:	10
+Release:	11
 License:	LGPL v2+ (libraries), GPL v2+ (programs)
 Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/libbonobo/2.32/%{name}-%{version}.tar.bz2
@@ -122,11 +122,12 @@ for f in bonobo/bonobo-storage-memory.c bonobo/bonobo-storage-memory.h \
 done
 
 %build
+%{__autopoint}
 %{__gtkdocize}
 %{__glib_gettextize}
 %{__intltoolize}
 %{__libtoolize}
-%{__aclocal}
+%{__aclocal} -I m4
 %{__autoconf}
 %{__autoheader}
 %{__automake}
